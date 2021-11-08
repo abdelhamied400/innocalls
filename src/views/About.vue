@@ -1,6 +1,6 @@
 <template>
   <div class="about">
-    <h1>This is an about page</h1>
+    <h1>{{$t("message")}}</h1>
     <Button type="primary" size="large">something</Button>
   </div>
 </template>
