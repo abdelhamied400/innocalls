@@ -1,3 +1,8 @@
+import { api } from './axios';
+
 export default {
-  isAuth: () => false,
+  isAuth: async () => {
+    const res = await api.get('customers/customer/me');
+    console.log(res.data);
+  },
 };
