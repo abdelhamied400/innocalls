@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import Home from '../views/Home.vue';
 import user from '../services/user';
+import store from '@/store/index';
 
 const routes = [
   {
@@ -15,9 +16,6 @@ const routes = [
     path: '/login',
     name: 'Login',
     component: () => import('../views/Login.vue'),
-    meta: {
-      requiresAuth: false,
-    },
   },
 ];
 
@@ -26,11 +24,16 @@ const router = createRouter({
   routes,
 });
 
-router.beforeEach((to, from, next) => {
-  if (to.meta.requiresAuth && !user.isAuth()) {
+router.beforeEach(async (to, from, next) => {
+  if (to.meta?.requiresAuth && !(await user.isAuth())) {
     next('/login');
+  } else {
+    next();
   }
-  next();
+});
+
+router.afterEach(() => {
+  store.commit('authLoading', false);
 });
 
 export default router;

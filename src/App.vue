@@ -1,10 +1,17 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/login">Login</router-link>
-  </div>
-  <router-view/>
+  <a-spin v-if="isauthLoading" />
+  <router-view v-else/>
 </template>
+
+<script>
+import { mapGetters } from 'vuex';
+
+export default {
+  computed: {
+    ...mapGetters(['isauthLoading']),
+  },
+};
+</script>
 
 <style>
 #app {
