@@ -10,6 +10,12 @@ const options = {
   },
 };
 
-const api = axios.create(options);
+const authOptions = {
+  ...options,
+  baseURL: process.env.VUE_APP_AUTH_URL,
+};
 
-export { axios, api };
+const api = axios.create(options);
+const auth = axios.create(authOptions);
+
+export { axios, api, auth };

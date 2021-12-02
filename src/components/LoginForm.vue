@@ -8,7 +8,7 @@
       <a-input type="password" v-model:value="formState.password" />
     </a-form-item>
     <a-form-item>
-      <a-button block type="primary" @click="onSubmit">Login</a-button>
+      <a-button block type="primary" @click="onSubmit" :loading="state.loading">Login</a-button>
     </a-form-item>
     <a-form-item class="flex">
       <a href>forget password?</a> -
@@ -21,13 +21,21 @@
 import {
   defineComponent, reactive, ref, toRaw,
 } from 'vue';
+import { useStore } from 'vuex';
+import { notification } from 'ant-design-vue';
+import { useRouter } from 'vue-router';
 
 export default defineComponent({
   setup() {
+    const store = useStore();
+    const router = useRouter();
     const loginForm = ref();
     const formState = reactive({
       username: '',
       password: '',
+    });
+    const state = reactive({
+      loading: false,
     });
     const rules = {
       username: [
@@ -37,15 +45,21 @@ export default defineComponent({
         { required: true, message: 'Please enter password', trigger: 'blur' },
       ],
     };
-    const onSubmit = () => {
-      loginForm.value
-        .validate()
-        .then(() => {
-          console.log('values', formState, toRaw(formState));
-        })
-        .catch((error) => {
-          console.log('error', error);
+    const onSubmit = async () => {
+      try {
+        await loginForm.value.validate();
+        const credentials = toRaw(formState);
+        state.loading = true;
+        await store.dispatch('login', credentials);
+        state.loading = false;
+        router.push({ name: 'home' });
+      } catch (error) {
+        notification.error({
+          message: error.response?.data.error,
+          description: error.response?.data.message,
         });
+        state.loading = false;
+      }
     };
     const resetForm = () => {
       loginForm.value.resetFields();
@@ -53,6 +67,7 @@ export default defineComponent({
     return {
       loginForm,
       formState,
+      state,
       rules,
       onSubmit,
       resetForm,

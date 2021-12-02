@@ -11,11 +11,7 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import LoginForm from '@/components/LoginForm.vue';
 import AuthLayout from '@/layout/AuthLayout.vue';
-
-export default {
-  components: { LoginForm, AuthLayout },
-};
 </script>

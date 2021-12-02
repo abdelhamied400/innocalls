@@ -6,7 +6,7 @@ import store from '@/store/index';
 const routes = [
   {
     path: '/',
-    name: 'Home',
+    name: 'home',
     component: Home,
     meta: {
       requiresAuth: true,
@@ -14,7 +14,7 @@ const routes = [
   },
   {
     path: '/login',
-    name: 'Login',
+    name: 'login',
     component: () => import('../views/Login.vue'),
   },
 ];
@@ -25,7 +25,9 @@ const router = createRouter({
 });
 
 router.beforeEach(async (to, from, next) => {
-  if (to.meta?.requiresAuth && !(await user.isAuth())) {
+  store.commit('authLoading', true);
+  const isAuth = to.meta?.requiresAuth && await user.isAuth();
+  if (to.meta?.requiresAuth && !isAuth) {
     next('/login');
   } else {
     next();
