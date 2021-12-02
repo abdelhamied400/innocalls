@@ -1,3 +1,16 @@
 {
-	"message": "اهلا i18n !!"
+  "@meta": {
+    "app": "Inno Calls"
+  },
+  "@shared": {},
+  "login": {
+    "welcome": "Welcome",
+    "form": {
+      "username": "Username",
+      "password": "Password",
+      "login": "Login",
+      "forgetPassword": "Forget Password?",
+      "createAccount": "Create Account?"
+    }
+  }
 }

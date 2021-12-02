@@ -1,7 +1,6 @@
 {
-    "printWidth": 120,
-    "semi": false,
-    "singleQuote": true,
-    "prettier.spaceBeforeFunctionParen": true
-  }
-  
+  "printWidth": 100,
+  "semi": false,
+  "singleQuote": true,
+  "prettier.spaceBeforeFunctionParen": true
+}

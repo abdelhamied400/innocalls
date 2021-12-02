@@ -1,18 +1,20 @@
 <template>
   <a-form ref="loginForm" :model="formState" :rules="rules">
-    <h3 class="md:text-5xl text-3xl font-bold text-primary mb-6">Welcome</h3>
-    <a-form-item label="username" name="username">
+    <h3 class="md:text-5xl text-3xl font-bold text-primary mb-6">{{ $t('login.welcome') }}</h3>
+    <a-form-item :label="$t('login.form.username')" name="username">
       <a-input v-model:value="formState.username" />
     </a-form-item>
-    <a-form-item label="password" name="password">
+    <a-form-item :label="$t('login.form.password')" name="password">
       <a-input type="password" v-model:value="formState.password" />
     </a-form-item>
     <a-form-item>
-      <a-button block type="primary" @click="onSubmit" :loading="state.loading">Login</a-button>
+      <a-button block type="primary" @click="onSubmit" :loading="state.loading">{{
+        $t('login.form.login')
+      }}</a-button>
     </a-form-item>
     <a-form-item class="flex">
-      <a href>forget password?</a> -
-      <a href>create account?</a>
+      <a href>{{ $t('login.form.forgetPassword') }}</a> -
+      <a href>{{ $t('login.form.createAccount') }}</a>
     </a-form-item>
   </a-form>
 </template>
@@ -38,12 +40,8 @@ export default defineComponent({
       loading: false,
     });
     const rules = {
-      username: [
-        { required: true, message: 'Please enter username', trigger: 'blur' },
-      ],
-      password: [
-        { required: true, message: 'Please enter password', trigger: 'blur' },
-      ],
+      username: [{ required: true, message: 'Please enter username', trigger: 'blur' }],
+      password: [{ required: true, message: 'Please enter password', trigger: 'blur' }],
     };
     const onSubmit = async () => {
       try {
