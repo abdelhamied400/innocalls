@@ -36,6 +36,9 @@ export default defineComponent({
   text-align: center;
   color: #2c3e50;
 }
+[dir='rtl'] #app {
+  font-family: 'Tajawal', sans-serif;
+}
 
 #nav {
   padding: 30px;
