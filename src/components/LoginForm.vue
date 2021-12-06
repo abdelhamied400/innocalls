@@ -1,5 +1,9 @@
 <template>
-  <a-form ref="loginForm" :model="formState" :rules="rules">
+  <a-form
+    ref="loginForm"
+    :model="formState"
+    :rules="rules"
+  >
     <h3 class="md:text-5xl text-3xl font-bold text-primary mb-6">{{ $t('login.welcome') }}</h3>
     <a-form-item :label="$t('login.form.username')" name="username">
       <a-input v-model:value="formState.username" />
@@ -26,9 +30,11 @@ import {
 import { useStore } from 'vuex';
 import { notification } from 'ant-design-vue';
 import { useRouter } from 'vue-router';
+import { useI18n } from 'vue-i18n';
 
 export default defineComponent({
   setup() {
+    const { t } = useI18n();
     const store = useStore();
     const router = useRouter();
     const loginForm = ref();
@@ -39,10 +45,10 @@ export default defineComponent({
     const state = reactive({
       loading: false,
     });
-    const rules = {
-      username: [{ required: true, message: 'Please enter username', trigger: 'blur' }],
-      password: [{ required: true, message: 'Please enter password', trigger: 'blur' }],
-    };
+    const rules = reactive({
+      username: [{ required: true, message: () => t('@meta.app'), trigger: 'change' }],
+      password: [{ required: true, message: 'Please enter password', trigger: 'change' }],
+    });
     const onSubmit = async () => {
       try {
         await loginForm.value.validate();
@@ -52,10 +58,19 @@ export default defineComponent({
         state.loading = false;
         router.push({ name: 'home' });
       } catch (error) {
-        notification.error({
-          message: error.response?.data.error,
-          description: error.response?.data.message,
-        });
+        if (error.errorFields) {
+          error.errorFields.forEach((field) => {
+            notification.error({
+              message: field.name[0],
+              description: field.errors[0],
+            });
+          });
+        } else {
+          notification.error({
+            message: error.response?.data.error,
+            description: error.response?.data.message,
+          });
+        }
         state.loading = false;
       }
     };

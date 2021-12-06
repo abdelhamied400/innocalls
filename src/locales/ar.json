@@ -1,16 +1,16 @@
 {
   "@meta": {
-    "app": "Inno Calls"
+    "app": "مكالمات اينو"
   },
   "@shared": {},
   "login": {
-    "welcome": "Welcome",
+    "welcome": "أهلا بك",
     "form": {
-      "username": "Username",
-      "password": "Password",
-      "login": "Login",
-      "forgetPassword": "Forget Password?",
-      "createAccount": "Create Account?"
+      "username": "اسم المستخدم",
+      "password": "كلمه السر",
+      "login": "تسجيل الدخول",
+      "forgetPassword": "نسيت كلمة المرور؟",
+      "createAccount": "إنشاء حساب؟"
     }
   }
 }
