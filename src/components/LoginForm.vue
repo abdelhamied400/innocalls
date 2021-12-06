@@ -46,8 +46,8 @@ export default defineComponent({
       loading: false,
     });
     const rules = reactive({
-      username: [{ required: true, message: () => t('@meta.app'), trigger: 'change' }],
-      password: [{ required: true, message: 'Please enter password', trigger: 'change' }],
+      username: [{ required: true, message: () => t('@shared.error.requiredM', { key: t('login.form.username') }), trigger: 'change' }],
+      password: [{ required: true, message: () => t('@shared.error.requiredF', { key: t('login.form.password') }), trigger: 'change' }],
     });
     const onSubmit = async () => {
       try {
@@ -61,12 +61,13 @@ export default defineComponent({
         if (error.errorFields) {
           error.errorFields.forEach((field) => {
             notification.error({
-              message: field.name[0],
+              message: t(`login.form.${field.name[0]}`),
               description: field.errors[0],
             });
           });
         } else {
           notification.error({
+            closeIcon: null,
             message: error.response?.data.error,
             description: error.response?.data.message,
           });

@@ -2,7 +2,12 @@
   "@meta": {
     "app": "مكالمات اينو"
   },
-  "@shared": {},
+  "@shared": {
+    "error": {
+      "requiredM": "{key} مطلوب",
+      "requiredF": "{key} مطلوبه"
+    }
+  },
   "login": {
     "welcome": "أهلا بك",
     "form": {

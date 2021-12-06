@@ -2,7 +2,12 @@
   "@meta": {
     "app": "Inno Calls"
   },
-  "@shared": {},
+  "@shared": {
+    "error": {
+      "requiredM": "{key} is required",
+      "requiredF": "{key} is required"
+    }
+  },
   "login": {
     "welcome": "Welcome",
     "form": {

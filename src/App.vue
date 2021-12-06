@@ -1,29 +1,32 @@
 <template>
-  <div class="h-screen flex" v-if="isauthLoading">
-    <a-spin class="m-auto" size="large" />
-  </div>
-  <router-view v-else/>
+  <a-config-provider :direction="dir">
+    <div class="h-screen flex" v-if="authLoading">
+      <a-spin class="m-auto" size="large" />
+    </div>
+    <router-view v-else/>
+  </a-config-provider>
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
-import { defineComponent } from 'vue';
+import { useStore } from 'vuex';
+import { defineComponent, computed } from 'vue';
 import { useI18n } from 'vue-i18n';
-import locales from '@/locales';
 
 export default defineComponent({
-  computed: {
-    ...mapGetters(['isauthLoading']),
-  },
   setup() {
-    const lang = localStorage.getItem('lang');
+    const store = useStore();
+    const { locale } = useI18n();
 
     const html = document.querySelector('html');
-    const { dir } = locales.filter((locale) => locale.value === lang)[0];
+    const lang = computed(() => store.state.meta.lang);
+    const dir = computed(() => store.state.meta.dir);
+    const authLoading = computed(() => store.state.user.authLoading);
+    html.setAttribute('lang', lang);
     html.setAttribute('dir', dir);
 
-    const { locale } = useI18n();
     locale.value = lang;
+
+    return { dir, authLoading };
   },
 });
 </script>

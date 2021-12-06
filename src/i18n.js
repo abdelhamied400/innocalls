@@ -1,15 +1,20 @@
 /* eslint-disable no-shadow */
 import { createI18n } from 'vue-i18n';
 import locales from '@/locales';
-
-const lang = localStorage.getItem('lang');
-const dir = localStorage.getItem('dir');
+import store from '@/store';
 
 // set default
+let lang = localStorage.getItem('lang');
+let dir = localStorage.getItem('dir');
+
 if (!lang || !dir) {
-  localStorage.setItem('lang', process.env.VUE_APP_I18N_LOCALE);
-  localStorage.setItem('dir', process.env.VUE_APP_I18N_DIR);
+  lang = process.env.VUE_APP_I18N_LOCALE;
+  dir = process.env.VUE_APP_I18N_DIR;
+  localStorage.setItem('lang', lang);
+  localStorage.setItem('dir', dir);
 }
+store.commit('dir', dir);
+store.commit('lang', lang);
 
 // on language change
 const changeLanguage = (lang) => {
@@ -21,6 +26,8 @@ const changeLanguage = (lang) => {
   const html = document.querySelector('html');
   html.setAttribute('dir', dir);
   html.setAttribute('lang', lang);
+  store.commit('dir', dir);
+  store.commit('lang', lang);
 };
 
 export {
