@@ -4,7 +4,7 @@
   },
   "@shared": {
     "error": {
-      "requiredM": "{key} مطلوب",
+      "required": "{key} مطلوب",
       "requiredF": "{key} مطلوبه"
     }
   },
@@ -16,6 +16,20 @@
       "login": "تسجيل الدخول",
       "forgetPassword": "نسيت كلمة المرور؟",
       "createAccount": "إنشاء حساب؟"
+    }
+  },
+  "signup": {
+    "title": "قم بإنشاء حساب مكالمات مجانية وابدأ في بناء البنية التحتية الصوتية الخاصة بك",
+    "form": {
+      "name": "الاسم بالكامل",
+      "email": "البريد الإلكتروني",
+      "password": "كلمه السر",
+      "confirmPassword": "تأكيد كلمة المرور",
+      "alreadyHaveAccount": "هل لديك حساب؟",
+      "signup": "اشتراك",
+      "error": {
+        "passwordNoMatch": "كلمات السر لا تتطابق"
+      }
     }
   }
 }

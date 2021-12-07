@@ -4,7 +4,7 @@
   },
   "@shared": {
     "error": {
-      "requiredM": "{key} is required",
+      "required": "{key} is required",
       "requiredF": "{key} is required"
     }
   },
@@ -16,6 +16,20 @@
       "login": "Login",
       "forgetPassword": "Forget Password?",
       "createAccount": "Create Account?"
+    }
+  },
+  "signup": {
+    "title": "Create your free innocalls account and start building your voice infrastracture",
+    "form": {
+      "name": "Full Name",
+      "email": "Email",
+      "password": "Password",
+      "confirmPassword": "Confirm Password",
+      "alreadyHaveAccount": "Already have account?",
+      "signup": "Signup",
+      "error": {
+        "passwordNoMatch": "passwords doesn't match"
+      }
     }
   }
 }
