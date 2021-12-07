@@ -8,7 +8,6 @@
       :options="locales"
       @change="onLangChange"
     >
-      <!-- @change="(value) => $i18n.locale = value" -->
       <template v-slot:suffixIcon>
         <CaretDownOutlined />
       </template>

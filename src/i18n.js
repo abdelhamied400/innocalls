@@ -3,32 +3,28 @@ import { createI18n } from 'vue-i18n';
 import locales from '@/locales';
 import store from '@/store';
 
-// set default
-let lang = localStorage.getItem('lang');
-let dir = localStorage.getItem('dir');
-
-if (!lang || !dir) {
-  lang = process.env.VUE_APP_I18N_LOCALE;
-  dir = process.env.VUE_APP_I18N_DIR;
-  localStorage.setItem('lang', lang);
-  localStorage.setItem('dir', dir);
-}
-store.commit('dir', dir);
-store.commit('lang', lang);
-
 // on language change
 const changeLanguage = (lang) => {
+  const html = document.querySelector('html');
   const { dir } = locales.filter((locale) => locale.value === lang)[0];
 
   localStorage.setItem('lang', lang);
   localStorage.setItem('dir', dir);
 
-  const html = document.querySelector('html');
-  html.setAttribute('dir', dir);
   html.setAttribute('lang', lang);
-  store.commit('dir', dir);
+  html.setAttribute('dir', dir);
+
   store.commit('lang', lang);
+  store.commit('dir', dir);
 };
+
+// set default
+let lang = localStorage.getItem('lang');
+if (!lang) {
+  lang = process.env.VUE_APP_I18N_LOCALE;
+  localStorage.setItem('lang', lang);
+}
+changeLanguage(lang);
 
 export {
   changeLanguage,

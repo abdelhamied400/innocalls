@@ -17,16 +17,13 @@ export default defineComponent({
     const store = useStore();
     const { locale } = useI18n();
 
-    const html = document.querySelector('html');
-    const lang = computed(() => store.state.meta.lang);
     const dir = computed(() => store.state.meta.dir);
+    const lang = computed(() => store.state.meta.lang);
     const authLoading = computed(() => store.state.user.authLoading);
-    html.setAttribute('lang', lang);
-    html.setAttribute('dir', dir);
 
-    locale.value = lang;
+    locale.value = lang.value;
 
-    return { dir, authLoading };
+    return { dir, lang, authLoading };
   },
 });
 </script>
