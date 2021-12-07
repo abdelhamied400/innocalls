@@ -24,11 +24,17 @@
       "name": "Full Name",
       "email": "Email",
       "password": "Password",
-      "confirmPassword": "Confirm Password",
+      "password_confirmation": "Confirm Password",
       "alreadyHaveAccount": "Already have account?",
       "signup": "Signup",
       "error": {
-        "passwordNoMatch": "passwords doesn't match"
+        "passwordNoMatch": "passwords doesn't match",
+        "passwordHint1": "One lowercase letter required",
+        "passwordHint2": "One uppercase letter required",
+        "passwordHint3": "8 characters minimum",
+        "passwordHint4": "One number required",
+        "passwordHint5": "Include a special charachter",
+        "emailNotValid": "email not valid"
       }
     }
   }

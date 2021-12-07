@@ -26,4 +26,11 @@ export default {
     });
     return res.data;
   },
+  signup: async (data) => {
+    const res = await auth.post('/api/v1/customer/register', {
+      ...data,
+      service_provider_uuid: process.env.VUE_APP_SERVICE_PROVIDER,
+    });
+    return res.data;
+  },
 };

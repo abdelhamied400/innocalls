@@ -26,5 +26,8 @@ export default {
       commit('auth', data);
       localStorage.setItem('token', data?.access_token);
     },
+    signup: async (_, data) => {
+      await user.signup(data);
+    },
   },
 };

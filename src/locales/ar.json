@@ -24,11 +24,17 @@
       "name": "الاسم بالكامل",
       "email": "البريد الإلكتروني",
       "password": "كلمه السر",
-      "confirmPassword": "تأكيد كلمة المرور",
+      "password_confirmation": "تأكيد كلمة المرور",
       "alreadyHaveAccount": "هل لديك حساب؟",
       "signup": "اشتراك",
       "error": {
-        "passwordNoMatch": "كلمات السر لا تتطابق"
+        "passwordNoMatch": "كلمات السر لا تتطابق",
+        "passwordHint1": "مطلوب حرف صغير واحد",
+        "passwordHint2": "مطلوب حرف واحد كبير",
+        "passwordHint3": "8 أحرف كحد أدنى",
+        "passwordHint4": "مطلوب رقم واحد",
+        "passwordHint5": "قم بتضمين حرف خاص",
+        "emailNotValid": "البريد الإلكتروني غير صالح"
       }
     }
   }
