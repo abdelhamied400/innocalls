@@ -5,27 +5,26 @@
     </h3>
 
     <div class="max-w-sm mx-auto">
-
-    <a-form-item :label="$t('signup.form.name')" name="name">
-      <a-input v-model:value="formState.name" />
-    </a-form-item>
-    <a-form-item  :label="$t('signup.form.email')" name="email">
-      <a-input type="email" v-model:value="formState.email" />
-    </a-form-item>
-    <a-form-item :label="$t('signup.form.password')" name="password">
-      <a-input type="password" v-model:value="formState.password" />
-    </a-form-item>
-    <a-form-item :label="$t('signup.form.password_confirmation')" name="password_confirmation">
-      <a-input type="password" v-model:value="formState.password_confirmation" />
-    </a-form-item>
-    <a-form-item>
-      <a-button block type="primary" @click="onSubmit" :loading="state.loading">{{
-        $t('signup.form.signup')
-      }}</a-button>
-    </a-form-item>
-    <a-form-item class="flex">
-      <router-link to="/login"> {{ $t('signup.form.alreadyHaveAccount') }} </router-link>
-    </a-form-item>
+      <a-form-item :label="$t('signup.form.name')" name="name">
+        <a-input v-model:value="formState.name" />
+      </a-form-item>
+      <a-form-item :label="$t('signup.form.email')" name="email">
+        <a-input type="email" v-model:value="formState.email" />
+      </a-form-item>
+      <a-form-item :label="$t('signup.form.password')" name="password">
+        <a-input type="password" v-model:value="formState.password" />
+      </a-form-item>
+      <a-form-item :label="$t('signup.form.password_confirmation')" name="password_confirmation">
+        <a-input type="password" v-model:value="formState.password_confirmation" />
+      </a-form-item>
+      <a-form-item>
+        <a-button block type="primary" @click="onSubmit" :loading="state.loading">{{
+          $t('signup.form.signup')
+        }}</a-button>
+      </a-form-item>
+      <a-form-item class="flex">
+        <router-link to="/login"> {{ $t('signup.form.alreadyHaveAccount') }} </router-link>
+      </a-form-item>
     </div>
   </a-form>
 </template>
@@ -65,7 +64,9 @@ export default defineComponent({
     };
     const passwordRules = async (rule, value) => {
       if (!value || value === '') {
-        return Promise.reject(new Error(t('@shared.error.required', { key: t('signup.form.password') })));
+        return Promise.reject(
+          new Error(t('@shared.error.required', { key: t('signup.form.password') })),
+        );
       }
       const rules = [
         { message: t('signup.form.error.passwordHint1'), regex: /[a-z]+/ },
@@ -93,7 +94,9 @@ export default defineComponent({
     };
     const emailRules = async (rule, value) => {
       if (!value || value === '') {
-        return Promise.reject(new Error(t('@shared.error.required', { key: t('signup.form.email') })));
+        return Promise.reject(
+          new Error(t('@shared.error.required', { key: t('signup.form.email') })),
+        );
       }
       if (!/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/.test(value)) {
         return Promise.reject(new Error(t('signup.form.error.emailNotValid')));
