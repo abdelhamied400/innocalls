@@ -29,5 +29,8 @@ export default {
     signup: async (_, data) => {
       await user.signup(data);
     },
+    forgetPassword: async (_, data) => {
+      await user.forgetPassword(data);
+    },
   },
 };

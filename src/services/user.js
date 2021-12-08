@@ -33,4 +33,10 @@ export default {
     });
     return res.data;
   },
+  forgetPassword: async (data) => {
+    const res = await auth.post('/api/v1/customer/password/reset', {
+      ...data,
+    });
+    return res.data;
+  },
 };

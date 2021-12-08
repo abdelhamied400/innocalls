@@ -37,5 +37,17 @@
         "emailNotValid": "email not valid"
       }
     }
+  },
+  "forgetPassword": {
+    "title": "forget password",
+    "form": {
+      "email": "Email",
+      "send": "Send",
+      "login": "Login",
+      "createAccount": "Create Account?",
+      "error": {
+        "emailNotValid": "email not valid"
+      }
+    }
   }
 }
