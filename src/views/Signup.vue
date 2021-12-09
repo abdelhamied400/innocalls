@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-    <div class="login">
+    <div class="signup">
       <AuthLayout class="flex">
         <div class="mx-8 my-auto flex justify-center items-center">
           <SignupForm />

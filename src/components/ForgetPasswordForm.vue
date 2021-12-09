@@ -12,9 +12,7 @@
       }}</a-button>
     </a-form-item>
     <a-form-item class="flex">
-      <router-link to="/login">
-        {{ $t('forgetPassword.form.login') }} </router-link
-      >-
+      <router-link to="/login"> {{ $t('forgetPassword.form.login') }} </router-link>-
       <router-link to="/signup"> {{ $t('forgetPassword.form.createAccount') }} </router-link>
     </a-form-item>
   </a-form>
@@ -69,7 +67,7 @@ export default defineComponent({
         state.loading = true;
         await store.dispatch('forgetPassword', data);
         state.loading = false;
-        router.push({ name: 'validatePasswordReset' });
+        router.push({ name: 'otpPasswordReset' });
       } catch (error) {
         if (error.errorFields) {
           error.errorFields.forEach((field, idx) => {

@@ -27,6 +27,11 @@ const routes = [
     name: 'forgetPassword',
     component: () => import('../views/ForgetPassword.vue'),
   },
+  {
+    path: '/verify-password-reset',
+    name: 'otpPasswordReset',
+    component: () => import('../views/OtpPasswordReset.vue'),
+  },
 ];
 
 const router = createRouter({
@@ -36,7 +41,7 @@ const router = createRouter({
 
 router.beforeEach(async (to, from, next) => {
   store.commit('authLoading', true);
-  const isAuth = to.meta?.requiresAuth && await user.isAuth();
+  const isAuth = to.meta?.requiresAuth && (await user.isAuth());
   if (to.meta?.requiresAuth && !isAuth) {
     next('/login');
   } else {
