@@ -4,6 +4,7 @@ export default {
   state: {
     authLoading: false,
     auth: null,
+    resetEmail: null,
   },
   getters: {
     isauthLoading: (state) => state.authLoading,
@@ -15,6 +16,9 @@ export default {
     },
     auth: (state, payload) => {
       state.auth = payload;
+    },
+    resetEmail: (state, email) => {
+      state.resetEmail = email;
     },
   },
   actions: {
@@ -29,8 +33,12 @@ export default {
     signup: async (_, data) => {
       await user.signup(data);
     },
-    forgetPassword: async (_, data) => {
+    forgetPassword: async ({ commit }, data) => {
       await user.forgetPassword(data);
+      commit('resetEmail', data.email);
+    },
+    otpCheck: async ({ state }, otp) => {
+      await user.otpCheck({ pin_code: otp, email: state.resetEmail });
     },
   },
 };

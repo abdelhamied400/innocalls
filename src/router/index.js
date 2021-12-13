@@ -32,6 +32,11 @@ const routes = [
     name: 'otpPasswordReset',
     component: () => import('../views/OtpPasswordReset.vue'),
   },
+  {
+    path: '/password/reset',
+    name: 'passwordReset',
+    component: () => import('../views/ResetPassword.vue'),
+  },
 ];
 
 const router = createRouter({

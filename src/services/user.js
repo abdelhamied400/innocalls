@@ -39,4 +39,10 @@ export default {
     });
     return res.data;
   },
+  otpCheck: async (data) => {
+    const res = await auth.post('/api/v1/customer/pin/checker', {
+      ...data,
+    });
+    return res.data;
+  },
 };

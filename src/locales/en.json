@@ -49,5 +49,12 @@
         "emailNotValid": "email not valid"
       }
     }
+  },
+  "otpPasswordReset": {
+    "title": "Enter 6 digit number",
+    "verify": "Verify",
+    "form": {
+      "otp": "Otp"
+    }
   }
 }
