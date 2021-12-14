@@ -17,8 +17,8 @@ import { useRouter } from 'vue-router';
 import { useStore } from 'vuex';
 import { notification } from 'ant-design-vue';
 import { useI18n } from 'vue-i18n';
-import Countdown from './ui/Countdown.vue';
-import Otp from './ui/Otp.vue';
+import Countdown from '../ui/Countdown.vue';
+import Otp from '../ui/Otp.vue';
 
 export default defineComponent({
   setup() {

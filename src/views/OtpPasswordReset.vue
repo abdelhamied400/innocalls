@@ -19,5 +19,5 @@
 
 <script setup>
 import AuthLayout from '@/layout/AuthLayout.vue';
-import OtpForm from '@/components/OtpForm.vue';
+import OtpForm from '@/components/forms/OtpForm.vue';
 </script>

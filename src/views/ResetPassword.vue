@@ -15,5 +15,5 @@
 
 <script setup>
 import AuthLayout from '@/layout/AuthLayout.vue';
-import ResetPasswordForm from '@/components/ResetPasswordForm.vue';
+import ResetPasswordForm from '@/components/forms/ResetPasswordForm.vue';
 </script>

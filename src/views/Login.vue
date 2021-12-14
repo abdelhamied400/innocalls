@@ -12,6 +12,6 @@
 </template>
 
 <script setup>
-import LoginForm from '@/components/LoginForm.vue';
+import LoginForm from '@/components/forms/LoginForm.vue';
 import AuthLayout from '@/layout/AuthLayout.vue';
 </script>

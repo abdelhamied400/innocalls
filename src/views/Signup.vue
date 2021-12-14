@@ -12,5 +12,5 @@
 
 <script setup>
 import AuthLayout from '@/layout/AuthLayout.vue';
-import SignupForm from '@/components/SignupForm.vue';
+import SignupForm from '@/components/forms/SignupForm.vue';
 </script>
