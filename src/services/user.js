@@ -45,4 +45,10 @@ export default {
     });
     return res.data;
   },
+  resetPassword: async (data) => {
+    const res = await auth.post('/api/v1/customer/password/change', {
+      ...data,
+    });
+    return res.data;
+  },
 };

@@ -5,6 +5,7 @@ export default {
     authLoading: false,
     auth: null,
     resetEmail: null,
+    otp: null,
   },
   getters: {
     isauthLoading: (state) => state.authLoading,
@@ -19,6 +20,9 @@ export default {
     },
     resetEmail: (state, email) => {
       state.resetEmail = email;
+    },
+    otp: (state, otp) => {
+      state.otp = otp;
     },
   },
   actions: {
@@ -37,8 +41,19 @@ export default {
       await user.forgetPassword(data);
       commit('resetEmail', data.email);
     },
-    otpCheck: async ({ state }, otp) => {
+    otpCheck: async ({ state, commit }, otp) => {
       await user.otpCheck({ pin_code: otp, email: state.resetEmail });
+      commit('otp', otp);
+    },
+    resetPassword: async ({ state, commit }, password) => {
+      await user.resetPassword({
+        email: state.resetEmail,
+        password,
+        password_confirmation: password,
+        pin_code: state.otp,
+      });
+      commit('resetEmail', null);
+      commit('otp', null);
     },
   },
 };

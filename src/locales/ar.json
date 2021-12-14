@@ -56,5 +56,22 @@
     "form": {
       "otp": "كلمه المرور"
     }
+  },
+  "resetPassword": {
+    "title": "تغيير كلمة المرور",
+    "form": {
+      "password": "كلمه السر",
+      "password_confirmation": "تأكيد كلمة المرور",
+      "reset": "تغيير",
+      "error": {
+        "passwordNoMatch": "كلمات السر لا تتطابق",
+        "passwordHint1": "مطلوب حرف صغير واحد",
+        "passwordHint2": "مطلوب حرف واحد كبير",
+        "passwordHint3": "8 أحرف كحد أدنى",
+        "passwordHint4": "مطلوب رقم واحد",
+        "passwordHint5": "قم بتضمين حرف خاص",
+        "emailNotValid": "البريد الإلكتروني غير صالح"
+      }
+    }
   }
 }

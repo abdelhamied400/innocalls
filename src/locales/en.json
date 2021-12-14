@@ -56,5 +56,22 @@
     "form": {
       "otp": "Otp"
     }
+  },
+  "resetPassword": {
+    "title": "Reset Password",
+    "form": {
+      "password": "Password",
+      "password_confirmation": "Confirm Password",
+      "reset": "reset",
+      "error": {
+        "passwordNoMatch": "passwords doesn't match",
+        "passwordHint1": "One lowercase letter required",
+        "passwordHint2": "One uppercase letter required",
+        "passwordHint3": "8 characters minimum",
+        "passwordHint4": "One number required",
+        "passwordHint5": "Include a special charachter",
+        "emailNotValid": "email not valid"
+      }
+    }
   }
 }
