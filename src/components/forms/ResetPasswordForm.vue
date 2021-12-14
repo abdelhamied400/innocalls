@@ -29,10 +29,11 @@ import { useI18n } from 'vue-i18n';
 import { useRouter } from 'vue-router';
 import { useStore } from 'vuex';
 import { notification } from 'ant-design-vue';
+import errorHandler from '@/utils/errorHandler';
 
 export default defineComponent({
   setup() {
-    const { t } = useI18n();
+    const i18n = useI18n();
     const store = useStore();
     const router = useRouter();
     const resetPasswordForm = ref();
@@ -55,7 +56,7 @@ export default defineComponent({
 
     const confirmPasswordRules = async (rule, value) => {
       if (value !== formState.password) {
-        return Promise.reject(new Error(t('resetPassword.form.error.passwordNoMatch')));
+        return Promise.reject(new Error(i18n.t('resetPassword.form.error.passwordNoMatch')));
       }
 
       return Promise.resolve();
@@ -63,16 +64,16 @@ export default defineComponent({
     const passwordRules = async (rule, value) => {
       if (!value || value === '') {
         return Promise.reject(
-          new Error(t('@shared.error.required', { key: t('resetPassword.form.password') })),
+          new Error(i18n.t('@shared.error.required', { key: i18n.t('resetPassword.form.password') })),
         );
       }
       const rules = [
-        { message: t('resetPassword.form.error.passwordHint1'), regex: /[a-z]+/ },
-        { message: t('resetPassword.form.error.passwordHint2'), regex: /[A-Z]+/ },
-        { message: t('resetPassword.form.error.passwordHint3'), regex: /.{8,}/ },
-        { message: t('resetPassword.form.error.passwordHint4'), regex: /[0-9]+/ },
+        { message: i18n.t('resetPassword.form.error.passwordHint1'), regex: /[a-z]+/ },
+        { message: i18n.t('resetPassword.form.error.passwordHint2'), regex: /[A-Z]+/ },
+        { message: i18n.t('resetPassword.form.error.passwordHint3'), regex: /.{8,}/ },
+        { message: i18n.t('resetPassword.form.error.passwordHint4'), regex: /[0-9]+/ },
         {
-          message: t('resetPassword.form.error.passwordHint5'),
+          message: i18n.t('resetPassword.form.error.passwordHint5'),
           regex: /(?=.*[!@#$%^&*()_+=/<>,.?'-])/,
         },
       ];
@@ -117,19 +118,12 @@ export default defineComponent({
         state.loading = false;
         router.push({ name: 'login' });
       } catch (error) {
-        if (error.errorFields) {
-          error.errorFields.forEach((field) => {
-            notification.error({
-              message: t(`resetPassword.form.${field.name}`),
-              description: field.errors.join(', '),
-            });
-          });
-        } else {
-          notification.error({
-            message: error.response?.data.error,
-            description: error.response?.data.message,
-          });
-        }
+        errorHandler.handle({
+          i18n,
+          notification,
+          error,
+          key: 'resetPassword',
+        });
         state.loading = false;
       }
     };

@@ -19,12 +19,13 @@ import { notification } from 'ant-design-vue';
 import { useI18n } from 'vue-i18n';
 import Countdown from '../ui/Countdown.vue';
 import Otp from '../ui/Otp.vue';
+import errorHandler from '@/utils/errorHandler';
 
 export default defineComponent({
   setup() {
     const router = useRouter();
     const store = useStore();
-    const { t } = useI18n();
+    const i18n = useI18n();
     const digits = 6;
 
     const otp = ref();
@@ -39,7 +40,7 @@ export default defineComponent({
     const onSubmit = async () => {
       if (!otp.value || otp.value.length < digits) {
         notification.error({
-          message: t('@shared.error.requiredF', { key: t('otpPasswordReset.form.otp') }),
+          message: i18n.t('@shared.error.requiredF', { key: i18n.t('otpPasswordReset.form.otp') }),
         });
         return;
       }
@@ -47,9 +48,11 @@ export default defineComponent({
         await store.dispatch('otpCheck', otp.value);
         router.push({ name: 'passwordReset' });
       } catch (error) {
-        notification.error({
-          message: error.response?.data.error.message,
-          description: Object.values(error.response?.data.error.errors).join(', '),
+        errorHandler.handle({
+          i18n,
+          notification,
+          error,
+          key: 'otpCheck',
         });
       }
     };

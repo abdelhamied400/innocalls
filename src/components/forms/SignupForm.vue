@@ -37,10 +37,11 @@ import { useStore } from 'vuex';
 import { notification } from 'ant-design-vue';
 import { useRouter } from 'vue-router';
 import { useI18n } from 'vue-i18n';
+import errorHandler from '@/utils/errorHandler';
 
 export default defineComponent({
   setup() {
-    const { t } = useI18n();
+    const i18n = useI18n();
     const store = useStore();
     const router = useRouter();
     const signupForm = ref();
@@ -57,7 +58,7 @@ export default defineComponent({
     // custom rules
     const confirmPasswordRules = async (rule, value) => {
       if (value !== formState.password) {
-        return Promise.reject(new Error(t('signup.form.error.passwordNoMatch')));
+        return Promise.reject(new Error(i18n.t('signup.form.error.passwordNoMatch')));
       }
 
       return Promise.resolve();
@@ -65,16 +66,16 @@ export default defineComponent({
     const passwordRules = async (rule, value) => {
       if (!value || value === '') {
         return Promise.reject(
-          new Error(t('@shared.error.required', { key: t('signup.form.password') })),
+          new Error(i18n.t('@shared.error.required', { key: i18n.t('signup.form.password') })),
         );
       }
       const rules = [
-        { message: t('signup.form.error.passwordHint1'), regex: /[a-z]+/ },
-        { message: t('signup.form.error.passwordHint2'), regex: /[A-Z]+/ },
-        { message: t('signup.form.error.passwordHint3'), regex: /.{8,}/ },
-        { message: t('signup.form.error.passwordHint4'), regex: /[0-9]+/ },
+        { message: i18n.t('signup.form.error.passwordHint1'), regex: /[a-z]+/ },
+        { message: i18n.t('signup.form.error.passwordHint2'), regex: /[A-Z]+/ },
+        { message: i18n.t('signup.form.error.passwordHint3'), regex: /.{8,}/ },
+        { message: i18n.t('signup.form.error.passwordHint4'), regex: /[0-9]+/ },
         {
-          message: t('signup.form.error.passwordHint5'),
+          message: i18n.t('signup.form.error.passwordHint5'),
           regex: /(?=.*[!@#$%^&*()_+=/<>,.?'-])/,
         },
       ];
@@ -95,11 +96,11 @@ export default defineComponent({
     const emailRules = async (rule, value) => {
       if (!value || value === '') {
         return Promise.reject(
-          new Error(t('@shared.error.required', { key: t('signup.form.email') })),
+          new Error(i18n.t('@shared.error.required', { key: i18n.t('signup.form.email') })),
         );
       }
       if (!/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/.test(value)) {
-        return Promise.reject(new Error(t('signup.form.error.emailNotValid')));
+        return Promise.reject(new Error(i18n.t('signup.form.error.emailNotValid')));
       }
 
       return Promise.resolve();
@@ -109,7 +110,7 @@ export default defineComponent({
       name: [
         {
           required: true,
-          message: () => t('@shared.error.required', { key: t('signup.form.name') }),
+          message: () => i18n.t('@shared.error.required', { key: i18n.t('signup.form.name') }),
           trigger: 'change',
         },
       ],
@@ -145,21 +146,12 @@ export default defineComponent({
         state.loading = false;
         router.push({ name: 'login' });
       } catch (error) {
-        if (error.errorFields) {
-          error.errorFields.forEach((field, idx) => {
-            setTimeout(() => {
-              notification.error({
-                message: t(`signup.form.${field.name}`),
-                description: field.errors.join(', '),
-              });
-            }, idx * 100);
-          });
-        } else {
-          notification.error({
-            message: error.response?.data.error,
-            description: error.response?.data.message,
-          });
-        }
+        errorHandler.handle({
+          i18n,
+          notification,
+          error,
+          key: 'signup',
+        });
         state.loading = false;
       }
     };

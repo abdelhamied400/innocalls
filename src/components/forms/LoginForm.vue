@@ -31,10 +31,11 @@ import { useStore } from 'vuex';
 import { notification } from 'ant-design-vue';
 import { useRouter } from 'vue-router';
 import { useI18n } from 'vue-i18n';
+import errorHandler from '@/utils/errorHandler';
 
 export default defineComponent({
   setup() {
-    const { t } = useI18n();
+    const i18n = useI18n();
     const store = useStore();
     const router = useRouter();
     const loginForm = ref();
@@ -49,14 +50,14 @@ export default defineComponent({
       username: [
         {
           required: true,
-          message: () => t('@shared.error.required', { key: t('login.form.username') }),
+          message: () => i18n.t('@shared.error.required', { key: i18n.t('login.form.username') }),
           trigger: 'blur',
         },
       ],
       password: [
         {
           required: true,
-          message: () => t('@shared.error.requiredF', { key: t('login.form.password') }),
+          message: () => i18n.t('@shared.error.requiredF', { key: i18n.t('login.form.password') }),
           trigger: 'blur',
         },
       ],
@@ -70,21 +71,12 @@ export default defineComponent({
         state.loading = false;
         router.push({ name: 'home' });
       } catch (error) {
-        if (error.errorFields) {
-          error.errorFields.forEach((field, idx) => {
-            setTimeout(() => {
-              notification.error({
-                message: t(`login.form.${field.name[0]}`),
-                description: field.errors.join(', '),
-              });
-            }, idx * 100);
-          });
-        } else {
-          notification.error({
-            message: error.response?.data.error,
-            description: error.response?.data.message,
-          });
-        }
+        errorHandler.handle({
+          i18n,
+          notification,
+          error,
+          key: 'login',
+        });
         state.loading = false;
       }
     };

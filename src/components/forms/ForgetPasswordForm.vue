@@ -26,10 +26,11 @@ import { useStore } from 'vuex';
 import { notification } from 'ant-design-vue';
 import { useRouter } from 'vue-router';
 import { useI18n } from 'vue-i18n';
+import errorHandler from '@/utils/errorHandler';
 
 export default defineComponent({
   setup() {
-    const { t } = useI18n();
+    const i18n = useI18n();
     const store = useStore();
     const router = useRouter();
     const forgetPasswordForm = ref();
@@ -42,11 +43,11 @@ export default defineComponent({
     const emailRules = async (rule, value) => {
       if (!value || value === '') {
         return Promise.reject(
-          new Error(t('@shared.error.required', { key: t('forgetPassword.form.email') })),
+          new Error(i18n.t('@shared.error.required', { key: i18n.t('forgetPassword.form.email') })),
         );
       }
       if (!/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/.test(value)) {
-        return Promise.reject(new Error(t('forgetPassword.form.error.emailNotValid')));
+        return Promise.reject(new Error(i18n.t('forgetPassword.form.error.emailNotValid')));
       }
 
       return Promise.resolve();
@@ -69,21 +70,12 @@ export default defineComponent({
         state.loading = false;
         router.push({ name: 'otpPasswordReset' });
       } catch (error) {
-        if (error.errorFields) {
-          error.errorFields.forEach((field, idx) => {
-            setTimeout(() => {
-              notification.error({
-                message: t(`forgetPassword.form.${field.name[0]}`),
-                description: field.errors.join(', '),
-              });
-            }, idx * 100);
-          });
-        } else {
-          notification.error({
-            message: error.response?.data.error,
-            description: error.response?.data.message,
-          });
-        }
+        errorHandler.handle({
+          i18n,
+          notification,
+          error,
+          key: 'forgetPassword',
+        });
         state.loading = false;
       }
     };

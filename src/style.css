@@ -5,7 +5,6 @@
 .ant-form-item input {
   min-width: 200px;
 }
-.ant-form-item-explain [role='alert'],
-.ant-notification-notice-description {
+.ant-form-item-explain [role='alert'] {
   white-space: pre;
 }
