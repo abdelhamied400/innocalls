@@ -25,7 +25,7 @@ export default {
         description,
         rtl,
       });
-    } else if (key === 'login') {
+    } else if (error.response && key === 'login') {
       // handle auth server errors
       const message = error.response?.data.error;
       const description = error.response?.data.message;
@@ -44,4 +44,5 @@ export default {
       });
     }
   },
+
 };
