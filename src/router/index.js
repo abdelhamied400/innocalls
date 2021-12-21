@@ -1,16 +1,84 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import Home from '../views/Home.vue';
+import MainLayout from '../layout/MainLayout.vue';
 import user from '../services/user';
 import store from '@/store/index';
 
 const routes = [
   {
     path: '/',
-    name: 'home',
-    component: Home,
-    meta: {
-      requiresAuth: true,
-    },
+    component: MainLayout,
+    children: [
+      {
+        path: '',
+        name: 'dashboard',
+        component: import('../views/Home.vue'),
+      },
+      {
+        path: 'order-confirmation',
+        name: 'orderConfirmation',
+        component: import('../views/Home.vue'),
+      },
+      {
+        path: 'campaigns',
+        name: 'campaigns',
+        component: import('../views/Home.vue'),
+      },
+      {
+        path: 'voice-messages',
+        name: 'voiceMessages',
+        component: import('../views/Home.vue'),
+      },
+      {
+        path: 'conference-bridge',
+        name: 'conferenceBridge',
+        component: import('../views/Home.vue'),
+      },
+      {
+        path: 'phonebook',
+        name: 'phonebook',
+        component: import('../views/Home.vue'),
+      },
+      {
+        path: 'extensions',
+        name: 'extensions',
+        component: import('../views/Home.vue'),
+      },
+      {
+        path: 'pbxware',
+        name: 'pbxware',
+        component: import('../views/Home.vue'),
+      },
+      {
+        path: 'call-reporting',
+        name: 'callReporting',
+        component: import('../views/Home.vue'),
+      },
+      {
+        path: 'call-survey',
+        name: 'callSurvey',
+        component: import('../views/Home.vue'),
+      },
+      {
+        path: 'invoices',
+        name: 'invoices',
+        component: import('../views/Home.vue'),
+      },
+      {
+        path: 'auto-dialer',
+        name: 'autoDialer',
+        component: import('../views/Home.vue'),
+      },
+      {
+        path: 'developer-tab',
+        name: 'developerTab',
+        component: import('../views/Home.vue'),
+      },
+      {
+        path: 'support',
+        name: 'support',
+        component: import('../views/Home.vue'),
+      },
+    ],
   },
   {
     path: '/login',

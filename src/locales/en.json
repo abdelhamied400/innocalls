@@ -73,5 +73,22 @@
         "emailNotValid": "email not valid"
       }
     }
+  },
+  "sidebar": {
+    "dashboard": "Dashboard",
+    "orderConfirmation": "Order Confirmation",
+    "campaigns": "Campaigns",
+    "voiceMessages": "Voice Messages",
+    "conferenceBridge": "Conference Bridge",
+    "phoneBook": "Phone Book",
+    "extensions": "Extensions",
+    "pbxWare": "PBXWare",
+    "reporting": "Reporting",
+    "callReporting": "Call Reporting",
+    "callSurvey": "Call Survey",
+    "invoices": "Invoices",
+    "autoDialer": "Auto Dialer",
+    "developerTab": "Developer Tab",
+    "contactSupport": "Contact Support"
   }
 }
