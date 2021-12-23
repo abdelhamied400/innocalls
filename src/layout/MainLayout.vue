@@ -7,7 +7,7 @@
       <div class="sidebar max-w-full">
         <Sidebar />
       </div>
-      <div class="page flex-1">
+      <div class="page mx-8 flex-1">
         <Breadcrumbs />
         <router-view />
       </div>

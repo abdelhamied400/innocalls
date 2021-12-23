@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const token = localStorage.getItem('token');
 const options = {
-  baseURL: process.env.VUE_APP_API_URL,
+  baseURL: `${process.env.VUE_APP_BASE_URL}/customer/api/v1/customers`,
   headers: {
     'Content-type': 'application/json',
     Accept: 'application/json',
@@ -12,10 +12,18 @@ const options = {
 
 const authOptions = {
   ...options,
-  baseURL: process.env.VUE_APP_AUTH_URL,
+  baseURL: `${process.env.VUE_APP_BASE_URL}/auth/customer`,
+};
+
+const sipOptions = {
+  ...options,
+  baseURL: `${process.env.VUE_APP_BASE_URL}/sip/provisioningwa`,
 };
 
 const api = axios.create(options);
+const sip = axios.create(sipOptions);
 const auth = axios.create(authOptions);
 
-export { axios, api, auth };
+export {
+  axios, api, auth, sip,
+};
