@@ -1,11 +1,12 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import MainLayout from '../layout/MainLayout.vue';
+import EmptyLayout from '../layout/EmptyLayout.vue';
 import user from '../services/user';
 import store from '@/store/index';
 
 const routes = [
   {
-    path: '/',
+    path: '',
     component: MainLayout,
     children: [
       {
@@ -49,14 +50,22 @@ const routes = [
         component: import('../views/Home.vue'),
       },
       {
-        path: 'call-reporting',
-        name: 'callReporting',
-        component: import('../views/Home.vue'),
-      },
-      {
-        path: 'call-survey',
-        name: 'callSurvey',
-        component: import('../views/Home.vue'),
+        path: 'reporting',
+        name: 'reporting',
+        component: EmptyLayout,
+        redirect: { name: 'callReporting' },
+        children: [
+          {
+            path: 'call-reporting',
+            name: 'callReporting',
+            component: import('../views/Home.vue'),
+          },
+          {
+            path: 'call-survey',
+            name: 'callSurvey',
+            component: import('../views/Home.vue'),
+          },
+        ],
       },
       {
         path: 'invoices',

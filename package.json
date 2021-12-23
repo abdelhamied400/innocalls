@@ -11,6 +11,7 @@
   "dependencies": {
     "@ant-design/icons-vue": "^6.0.1",
     "@vueuse/motion": "^2.0.0-beta.4",
+    "@vueuse/shared": "^7.4.0",
     "ant-design-vue": "^2.2.8",
     "axios": "^0.24.0",
     "babel-plugin-import": "^1.13.3",

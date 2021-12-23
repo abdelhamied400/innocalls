@@ -113,12 +113,12 @@ const list = computed(() => [
     children: [
       {
         name: t('sidebar.callReporting'),
-        to: '/call-reporting',
+        to: '/reporting/call-reporting',
         icon: <SoundFilled />,
       },
       {
         name: t('sidebar.callSurvey'),
-        to: '/call-survey',
+        to: '/reporting/call-survey',
         icon: <NotificationFilled />,
       },
     ],

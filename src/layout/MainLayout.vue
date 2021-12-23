@@ -8,6 +8,7 @@
         <Sidebar />
       </div>
       <div class="page flex-1">
+        <Breadcrumbs />
         <router-view />
       </div>
     </div>
@@ -17,4 +18,5 @@
 <script setup>
 import Navbar from '@/components/Navbar.vue';
 import Sidebar from '@/components/Sidebar.vue';
+import Breadcrumbs from '@/components/ui/Breadcrumbs.vue';
 </script>
