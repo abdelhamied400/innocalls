@@ -12,6 +12,6 @@
 p {
   margin: 0 !important;
 }
-a {
+.ant-menu a {
   color: inherit !important;
 }
