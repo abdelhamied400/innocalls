@@ -1,14 +1,14 @@
 import { auth, api } from '@/services/axios';
 
 export default {
-  isAuth: async () => {
+  auth: async () => {
     try {
       const res = await api.get('customer/me', {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         },
       });
-      return res.data.success;
+      return res.data;
     } catch (error) {
       return false;
     }

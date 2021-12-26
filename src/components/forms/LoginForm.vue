@@ -69,7 +69,7 @@ export default defineComponent({
         state.loading = true;
         await store.dispatch('login', credentials);
         state.loading = false;
-        router.push({ name: 'home' });
+        router.push({ name: 'dashboard' });
       } catch (error) {
         errorHandler.handle({
           i18n,

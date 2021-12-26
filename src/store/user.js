@@ -6,10 +6,14 @@ export default {
     auth: null,
     resetEmail: null,
     otp: null,
+    user: null,
+    tenant: null,
   },
   getters: {
     isauthLoading: (state) => state.authLoading,
     auth: (state) => state.auth,
+    user: (state) => state.user,
+    tenant: (state) => state.tenant,
   },
   mutations: {
     authLoading: (state, loading) => {
@@ -24,10 +28,21 @@ export default {
     otp: (state, otp) => {
       state.otp = otp;
     },
+    user: (state, userData) => {
+      state.user = userData;
+    },
+    tenant: (state, tenant) => {
+      state.tenant = tenant;
+    },
   },
   actions: {
     setLoading: ({ commit }, loading) => {
       commit('authLoading', loading);
+    },
+    auth: async ({ commit }) => {
+      const data = await user.auth();
+      commit('user', data);
+      commit('tenant', data?.tenantList?.[0]);
     },
     login: async ({ commit }, credentials) => {
       const data = await user.login(credentials);
@@ -54,6 +69,9 @@ export default {
       });
       commit('resetEmail', null);
       commit('otp', null);
+    },
+    changeTenant: ({ commit }, tenant) => {
+      commit('tenant', tenant);
     },
   },
 };

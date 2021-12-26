@@ -2,9 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+/* overridding ant design default bugs */
 .ant-form-item input {
   min-width: 200px;
 }
 .ant-form-item-explain [role='alert'] {
   white-space: pre;
+}
+p {
+  margin: 0 !important;
+}
+a {
+  color: inherit !important;
 }

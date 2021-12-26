@@ -8,46 +8,49 @@ const routes = [
   {
     path: '',
     component: MainLayout,
+    meta: {
+      requiresAuth: true,
+    },
     children: [
       {
         path: '',
         name: 'dashboard',
-        component: import('../views/Home.vue'),
+        component: () => import('../views/Home.vue'),
       },
       {
         path: 'order-confirmation',
         name: 'orderConfirmation',
-        component: import('../views/Home.vue'),
+        component: () => import('../views/Home.vue'),
       },
       {
         path: 'campaigns',
         name: 'campaigns',
-        component: import('../views/Home.vue'),
+        component: () => import('../views/Home.vue'),
       },
       {
         path: 'voice-messages',
         name: 'voiceMessages',
-        component: import('../views/Home.vue'),
+        component: () => import('../views/Home.vue'),
       },
       {
         path: 'conference-bridge',
         name: 'conferenceBridge',
-        component: import('../views/Home.vue'),
+        component: () => import('../views/Home.vue'),
       },
       {
         path: 'phonebook',
         name: 'phonebook',
-        component: import('../views/Home.vue'),
+        component: () => import('../views/Home.vue'),
       },
       {
         path: 'extensions',
         name: 'extensions',
-        component: import('../views/Home.vue'),
+        component: () => import('../views/Home.vue'),
       },
       {
         path: 'pbxware',
         name: 'pbxware',
-        component: import('../views/Home.vue'),
+        component: () => import('../views/Home.vue'),
       },
       {
         path: 'reporting',
@@ -58,34 +61,34 @@ const routes = [
           {
             path: 'call-reporting',
             name: 'callReporting',
-            component: import('../views/Home.vue'),
+            component: () => import('../views/Home.vue'),
           },
           {
             path: 'call-survey',
             name: 'callSurvey',
-            component: import('../views/Home.vue'),
+            component: () => import('../views/Home.vue'),
           },
         ],
       },
       {
         path: 'invoices',
         name: 'invoices',
-        component: import('../views/Home.vue'),
+        component: () => import('../views/Home.vue'),
       },
       {
         path: 'auto-dialer',
         name: 'autoDialer',
-        component: import('../views/Home.vue'),
+        component: () => import('../views/Home.vue'),
       },
       {
         path: 'developer-tab',
         name: 'developerTab',
-        component: import('../views/Home.vue'),
+        component: () => import('../views/Home.vue'),
       },
       {
         path: 'support',
         name: 'support',
-        component: import('../views/Home.vue'),
+        component: () => import('../views/Home.vue'),
       },
     ],
   },
@@ -123,7 +126,11 @@ const router = createRouter({
 
 router.beforeEach(async (to, from, next) => {
   store.commit('authLoading', true);
-  const isAuth = to.meta?.requiresAuth && (await user.isAuth());
+  const auth = await user.auth();
+  store.commit('user', auth.data);
+  store.commit('tenant', auth.data?.tenantList?.[0]);
+
+  const isAuth = to.meta?.requiresAuth && auth.success;
   if (to.meta?.requiresAuth && !isAuth) {
     next('/login');
   } else {
