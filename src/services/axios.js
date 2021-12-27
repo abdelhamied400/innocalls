@@ -17,7 +17,7 @@ const authOptions = {
 
 const sipOptions = {
   ...options,
-  baseURL: `${process.env.VUE_APP_BASE_URL}/sip/provisioningwa`,
+  baseURL: `${process.env.VUE_APP_BASE_URL}/customer/sip/provisioningwa`,
 };
 
 const api = axios.create(options);

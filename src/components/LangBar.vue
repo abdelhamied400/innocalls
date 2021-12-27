@@ -2,7 +2,7 @@
   <div class="lang-bar">
     <a-select
       :bordered="false"
-      class="bg-white rounded-md"
+      class="bg-white rounded-lg"
       ref="select"
       v-model:value="lang"
       :options="locales"
