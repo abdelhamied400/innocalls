@@ -1,6 +1,6 @@
 <template>
   <main class="bg-gray-200 min-h-screen">
-    <div class="navbar">
+    <div class="navbar sticky top-0 z-10">
       <Navbar />
     </div>
     <div class="flex max-w-7xl mx-auto mt-8">

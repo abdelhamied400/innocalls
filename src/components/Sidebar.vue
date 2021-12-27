@@ -1,7 +1,7 @@
 <template>
   <transition :css="false" @leave="(el, done) => motions.cube.leave(done)">
     <aside
-      class="bg-white shadow-lg border"
+      class="bg-white shadow-lg border sticky top-24"
       v-if="sidebarOpen"
       v-motion="'cube'"
       :initial="{
