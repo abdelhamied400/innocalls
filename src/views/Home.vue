@@ -25,7 +25,7 @@
             <template #icon>
               <div class="bg-primary rounded-lg -mt-12 mb-4">
                 <img
-                  class="w-28 h-28 object-contain p-4"
+                  class="w-28 h-28 object-contain p-8"
                   src="@/assets/icons/call-duration.svg"
                   alt=""
                 />
@@ -45,19 +45,18 @@
       <div class="billing-details">
         <h3 class="text-3xl font-black text-gray-900 mb-3">Billing Details</h3>
         <div class="card">
-          <StatsDetailsCard class="mt-12">
+          <StatsDetailsCard class="mt-12 bg-primary-dark text-white">
             <template #icon>
-              <div class="bg-primary rounded-lg -mt-12 mb-4">
-                <img class="w-28 h-28 object-contain p-4" src="@/assets/icons/invoice.svg" alt="" />
+              <div class="bg-pink-600 rounded-lg -mt-12 mb-4">
+                <img class="w-28 h-28 object-contain p-8" src="@/assets/icons/invoice.svg" alt="" />
               </div>
             </template>
             <template #head>
-              <p class="text-gray-400 text-lg font-light">Average call duration / month</p>
-              <p class="font-bold text-2xl">0H 1M 17S</p>
+              <p class="text-lg font-light">total amount of overdue invoices</p>
+              <p class="font-bold text-2xl">-</p>
             </template>
             <template #total>
-              <p class="font-bold text-2xl text-primary">Average call duration</p>
-              <p class="text-gray-400 text-lg font-light">Based on 4152 calls</p>
+              <p class="font-bold text-2xl text-pink-600">Check your Integration</p>
             </template>
           </StatsDetailsCard>
         </div>

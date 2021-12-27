@@ -17,12 +17,14 @@
       </div>
     </div>
     <hr />
-    <div class="total">
+    <div class="total my-4">
       <slot name="total" />
     </div>
   </div>
 </template>
 
-<script>
-
-</script>
+<style scoped>
+  .stats-details-card{
+    min-height: 225px
+  }
+</style>>
