@@ -22,7 +22,7 @@ const props = defineProps({
 
 <style>
 .graphCard .body .draw-area{
-  max-height: 255px !important;
+  height: 255px !important;
 }
 .graphCard .body .draw-area div{
   width: 100% !important;

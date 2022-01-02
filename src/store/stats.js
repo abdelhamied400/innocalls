@@ -3,16 +3,18 @@ import { randomColor } from '@/utils/color';
 
 export default {
   state: {
-    callDistribution: {},
-    totalCalls: {},
-    voiceMails: {},
-    totalExtensions: {},
+    callDistribution: null,
+    totalCalls: null,
+    voiceMails: null,
+    totalExtensions: null,
+    averageCallDuration: null,
   },
   getters: {
     callDistribution: (state) => state.callDistribution,
     totalCalls: (state) => state.totalCalls,
     voiceMails: (state) => state.voiceMails,
     totalExtensions: (state) => state.totalExtensions,
+    averageCallDuration: (state) => state.averageCallDuration,
   },
   mutations: {
     callDistribution: (state, data) => {
@@ -26,6 +28,9 @@ export default {
     },
     totalExtensions: (state, data) => {
       state.totalExtensions = data;
+    },
+    averageCallDuration: (state, data) => {
+      state.averageCallDuration = data;
     },
   },
   actions: {
@@ -74,7 +79,6 @@ export default {
     },
     fetchExtensions: async ({ commit, rootState }) => {
       const extensions = await stats.getExtensions(rootState.user.tenant.id);
-      console.log(extensions.length);
       const data = {
         labels: ['extensions'],
         datasets: [
@@ -85,6 +89,10 @@ export default {
         ],
       };
       commit('totalExtensions', data);
+    },
+    fetchAverageCallDuration: async ({ commit, rootState }) => {
+      const duration = await stats.getCallAverageDuration(rootState.user.tenant.id);
+      commit('averageCallDuration', duration);
     },
   },
 };
