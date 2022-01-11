@@ -7,7 +7,7 @@
             <OtpForm />
             <img
               class="absolute bottom-0 left-0 pointer-events-none"
-              src="../assets/login-bg.png"
+              src="../../assets/login-bg.png"
               alt
             />
           </div>

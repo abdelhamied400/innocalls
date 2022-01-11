@@ -20,7 +20,7 @@ const routes = [
       {
         path: 'order-confirmation',
         name: 'orderConfirmation',
-        component: () => import('../views/Home.vue'),
+        component: () => import('../views/OrderConfirmation/index.vue'),
       },
       {
         path: 'campaigns',
@@ -95,27 +95,27 @@ const routes = [
   {
     path: '/login',
     name: 'login',
-    component: () => import('../views/Login.vue'),
+    component: () => import('../views/Auth/Login.vue'),
   },
   {
     path: '/signup',
     name: 'signup',
-    component: () => import('../views/Signup.vue'),
+    component: () => import('../views/Auth/Signup.vue'),
   },
   {
     path: '/forget-password',
     name: 'forgetPassword',
-    component: () => import('../views/ForgetPassword.vue'),
+    component: () => import('../views/Auth/ForgetPassword.vue'),
   },
   {
     path: '/verify-password-reset',
     name: 'otpPasswordReset',
-    component: () => import('../views/OtpPasswordReset.vue'),
+    component: () => import('../views/Auth/OtpPasswordReset.vue'),
   },
   {
     path: '/password/reset',
     name: 'passwordReset',
-    component: () => import('../views/ResetPassword.vue'),
+    component: () => import('../views/Auth/ResetPassword.vue'),
   },
 ];
 

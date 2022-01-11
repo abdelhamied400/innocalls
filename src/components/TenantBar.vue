@@ -1,9 +1,9 @@
 <template>
-  <div class="tenantBar capitalize">
+  <div class="tenantBar capitalize flex">
     <a-dropdown class="top-8" placement="bottomCenter" :trigger="['click']">
-      <div class="text-white cursor-pointer mx-4">
-        <span class="px-4">{{ user?.tenantList?.[0]?.name || user.name }}</span>
-        <DownOutlined />
+      <div class="cursor-pointer flex items-center space-x-2">
+        <span>{{ user?.tenantList?.[0]?.name || user.name }}</span>
+        <img class="rounded-full" src="https://i.pravatar.cc/50" alt="">
       </div>
       <template #overlay>
         <a-menu class="tenantMenu text-center capitalize" @click="onTenantChange">
@@ -36,7 +36,6 @@
 <script setup>
 import { computed } from 'vue';
 import { useStore } from 'vuex';
-import { DownOutlined } from '@ant-design/icons-vue';
 
 const store = useStore();
 

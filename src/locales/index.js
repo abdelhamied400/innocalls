@@ -1,14 +1,14 @@
 export default [
   {
     name: 'english',
-    label: 'English',
+    label: 'EN',
     value: 'en',
     slug: 'en',
     dir: 'ltr',
   },
   {
     name: 'arabic',
-    label: 'العربيه',
+    label: 'AR',
     value: 'ar',
     slug: 'ar',
     dir: 'rtl',
