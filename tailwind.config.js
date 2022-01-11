@@ -9,6 +9,7 @@ module.exports = {
           dark: '#0D4D80',
         },
         state: {
+          info: '#2F8FCF',
           success: '#52c41a',
           warning: '#faad14',
           error: '#f5222d',

@@ -21,10 +21,10 @@
       <h1 class="text-primary font-bold text-3xl my-2">Service Level Details</h1>
       <div class="grid grid-cols-4 gap-4">
         <DetailsCard
+          stats="warning"
           :icon="callDurationIcon"
           title="Average call inbound"
           value="6 Hrs."
-          sub="Based on 333 calls"
         />
         <DetailsCard
           :icon="callDurationIcon"
