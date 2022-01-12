@@ -3,13 +3,13 @@
     class="details-card bg-white rounded-lg text-center flex flex-col"
     :class="props.stats ? 'border border-gray-300' : 'shadow-md'"
   >
-    <div class="content grid grid-cols-3 gap-4 flex-grow">
-      <div class="border-r col-span-0 flex" :class="`bg-state-${stats}`">
+    <div class="content grid grid-cols-5 gap-4 flex-grow">
+      <div class="border-r col-span-2 flex" :class="`bg-state-${stats}`">
         <div class="icon m-auto">
           <img class="w-20 h-20" :src="props.icon" alt="" />
         </div>
       </div>
-      <div class="data col-span-2 my-auto py-8 flex flex-col gap-2">
+      <div class="data col-span-3 my-auto py-8 flex flex-col gap-2">
         <h4
           class="title text-xl capitalize"
           :class="props.stats ? `text-state-${props.stats}` : 'text-primary'"

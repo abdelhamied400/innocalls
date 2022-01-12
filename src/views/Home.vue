@@ -21,28 +21,28 @@
       <h1 class="text-primary font-bold text-3xl my-2">Service Level Details</h1>
       <div class="grid grid-cols-4 gap-4">
         <DetailsCard
-          stats="warning"
-          :icon="callDurationIcon"
-          title="Average call inbound"
-          value="6 Hrs."
-        />
-        <DetailsCard
-          :icon="callDurationIcon"
+          :icon="callTimeIcon"
           title="Average call inbound"
           value="6 Hrs."
           sub="Based on 333 calls"
         />
         <DetailsCard
-          :icon="callDurationIcon"
+          :icon="callTimeIcon"
           title="Average call inbound"
           value="6 Hrs."
           sub="Based on 333 calls"
         />
         <DetailsCard
-          :icon="callDurationIcon"
+          :icon="ongoingIcon"
           title="Average call inbound"
-          value="6 Hrs."
-          sub="Based on 333 calls"
+          value="300 Min."
+          sub="Based on 400 calls"
+        />
+        <DetailsCard
+          :icon="ongoingIcon"
+          title="Average call inbound"
+          value="120 Min."
+          sub="Based on 400 calls"
         />
       </div>
     </div>
@@ -53,7 +53,8 @@
 import { BarChart, DoughnutChart } from 'vue-chart-3';
 import Card from '@/components/ui/Card.vue';
 import DetailsCard from '@/components/ui/DetailsCard.vue';
-import callDurationIcon from '@/assets/icons/call-duration-primary.svg';
+import callTimeIcon from '@/assets/icons/talk-time-primary.svg';
+import ongoingIcon from '@/assets/icons/ongoing-primary.svg';
 
 const testData = {
   labels: ['Red', 'Blue', 'Yellow'],
