@@ -20,7 +20,19 @@ const routes = [
       {
         path: 'order-confirmation',
         name: 'orderConfirmation',
-        component: () => import('../views/OrderConfirmation/index.vue'),
+        component: EmptyLayout,
+        children: [
+          {
+            path: '',
+            name: 'list-order-confirmation',
+            component: () => import('../views/OrderConfirmation/index.vue'),
+          },
+          {
+            path: 'create',
+            name: 'create-order-confirmation',
+            component: () => import('../views/OrderConfirmation/Create.vue'),
+          },
+        ],
       },
       {
         path: 'campaigns',

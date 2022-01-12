@@ -72,23 +72,23 @@ const navItems = computed(() => [
     children: [
       {
         name: 'Call Campaign',
-        to: '/call-campaign',
+        to: '/call-campaign/create',
       },
       {
         name: 'Order Confirmation',
-        to: '/order-confirmation',
+        to: '/order-confirmation/create',
       },
       {
         name: 'Outbound Call Survey',
-        to: '/call-survey',
+        to: '/call-survey/create',
       },
       {
         name: 'Auto Dialer',
-        to: '/auto-dialer',
+        to: '/auto-dialer/create',
       },
       {
         name: 'Product Survey',
-        to: '/product-survey',
+        to: '/product-survey/create',
       },
     ],
   },
