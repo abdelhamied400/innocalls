@@ -74,6 +74,36 @@
       }
     }
   },
+  "navbar": {
+    "home": "الرئيسيه",
+    "create": "انشاء",
+    "callCampaign": "الحملات",
+    "orderConfirmation": "الطلبات",
+    "outboundCallSurvey": "المكالمات الصادره",
+    "autoDialer": "الاتصال الالي",
+    "productSurvey": "Product Survey",
+    "reporting": "التقارير",
+    "callReporting": "تقارير المكالمات",
+    "callSurvey": "Call Survey",
+    "usersAndTeams": "المستخدمين والفرق",
+    "payment": "الدفع",
+    "tenants": "الاعضاء",
+    "profile": "الحساب الشخصي",
+    "logout": "تسجيل الخروج",
+    "noTenants": "لا يوجد اي اعضاء"
+  },
+  "subnav": {
+    "queues": "قائمه الانتظار",
+    "teams": "الفرق",
+    "groups": "المجموعات"
+  },
+  "stats": {
+    "statistics": "الاحصائيات",
+    "onlineExtensions": "النطاقات المتاحه",
+    "onBreakExtensions": "النطاقات المفصوله",
+    "busyExtensions": "النطاقات المشغوله",
+    "waitingCalls": "المكالمات في الانتظار"
+  },
   "sidebar": {
     "dashboard": "لوحة التحكم",
     "orderConfirmation": "الطلبات",
@@ -84,7 +114,7 @@
     "extensions": "الملحقات",
     "pbxWare": "PBXWare",
     "reporting": "التقارير",
-    "callReporting": "Call Reporting",
+    "callReporting": "تقارير المكالمات",
     "callSurvey": "Call Survey",
     "invoices": "الفواتير",
     "autoDialer": "الاتصال الالي",

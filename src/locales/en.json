@@ -74,6 +74,36 @@
       }
     }
   },
+  "navbar": {
+    "home": "Home",
+    "create": "Create",
+    "callCampaign": "Call Campaign",
+    "orderConfirmation": "Order Confirmation",
+    "outboundCallSurvey": "Outbound Call Survey",
+    "autoDialer": "Auto Dialer",
+    "productSurvey": "Product Survey",
+    "reporting": "Reporting",
+    "callReporting": "Call Reporting",
+    "callSurvey": "Call Survey",
+    "usersAndTeams": "Users and Teams",
+    "payment": "Payment",
+    "tenants": "Tenants",
+    "profile": "Profile",
+    "logout": "Logout",
+    "noTenants": "No Tenants Found"
+  },
+  "subnav": {
+    "queues": "Queues",
+    "teams": "Teams",
+    "groups": "Groups"
+  },
+  "stats": {
+    "statistics": "Statistics",
+    "onlineExtensions": "Online Extensions",
+    "onBreakExtensions": "On Break Extensions",
+    "busyExtensions": "Busy Extensions",
+    "waitingCalls": "Waiting Calls"
+  },
   "sidebar": {
     "dashboard": "Dashboard",
     "orderConfirmation": "Order Confirmation",

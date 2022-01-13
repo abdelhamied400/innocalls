@@ -5,12 +5,29 @@
     </div>
 
     <div class="bg-white px-24 py-6">
-      <h1 class="text-primary font-bold text-3xl text-justify mb-4">Statistics</h1>
+      <h1 class="text-primary font-bold text-3xl text-justify mb-4">
+        {{ $t('stats.statistics') }}
+      </h1>
       <div class="grid grid-cols-4 gap-4 bg-white">
-        <DetailsCard stats="success" :icon="onlineIcon" title="Online Extentions" value="24" />
-        <DetailsCard stats="info" :icon="breakIcon" title="On Break Extentions" value="3" />
-        <DetailsCard stats="error" :icon="busyIcon" title="Busy Extentions" value="1" />
-        <DetailsCard stats="warning" :icon="waitIcon" title="Waiting Calls" value="15" />
+        <DetailsCard
+          stats="success"
+          :icon="onlineIcon"
+          :title="$t('stats.onlineExtensions')"
+          value="24"
+        />
+        <DetailsCard
+          stats="info"
+          :icon="breakIcon"
+          :title="$t('stats.onBreakExtensions')"
+          value="3"
+        />
+        <DetailsCard stats="error" :icon="busyIcon" :title="$t('stats.busyExtensions')" value="1" />
+        <DetailsCard
+          stats="warning"
+          :icon="waitIcon"
+          :title="$t('stats.waitingCalls')"
+          value="15"
+        />
       </div>
     </div>
 

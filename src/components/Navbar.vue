@@ -9,7 +9,7 @@
         <div class="menu xl:flex hidden">
           <NavbarItem v-for="item in navItems" v-bind="item" :key="item.name" />
         </div>
-        <div class="actions md:flex hidden items-center">
+        <div class="actions md:flex gap-2 hidden items-center">
           <LangBar />
           <img class="w-7 mx-2" src="@/assets/icons/shop.svg" alt />
           <img class="w-7 mx-2" src="@/assets/icons/notification.svg" alt />
@@ -29,12 +29,16 @@
         class="px-4 text-base capitalize flex space-x-2 items-center"
         @click.prevent
       >
-        Dashboard
+        {{$t("sidebar.dashboard")}}
         <CaretDownOutlined />
       </a>
       <template #overlay>
         <a-menu>
-          test
+          <router-link v-for="(item, idx) in sidebarItems" :key="idx" :to="item.to">
+            <a-menu-item>
+              {{ item.name }}
+            </a-menu-item>
+          </router-link>
         </a-menu>
       </template>
     </a-dropdown>
@@ -46,8 +50,8 @@
             v-model:selectedKeys="current"
             mode="horizontal"
           >
-            <a-menu-item class="mx-4" v-for="item in subMenuItems" :key="item">
-              <span class="block my-4 text-lg">{{ item }}</span>
+            <a-menu-item class="mx-4" v-for="item in subMenuItems" :key="item.key">
+              <span class="block my-4 text-lg">{{ item.value }}</span>
             </a-menu-item>
           </a-menu>
         </div>
@@ -61,62 +65,141 @@
 <script setup>
 import { computed, ref } from 'vue';
 import { CaretDownOutlined } from '@ant-design/icons-vue';
+import { useI18n } from 'vue-i18n';
 import NavbarItem from './NavbarItem.vue';
 import LangBar from './LangBar.vue';
 import TenantBar from './TenantBar.vue';
 
+const { t } = useI18n();
+
 const current = ref(['queues']);
 const navItems = computed(() => [
   {
-    name: 'create',
+    name: t('navbar.create'),
     children: [
       {
-        name: 'Call Campaign',
+        name: t('navbar.callCampaign'),
         to: '/call-campaign/create',
       },
       {
-        name: 'Order Confirmation',
+        name: t('navbar.orderConfirmation'),
         to: '/order-confirmation/create',
       },
       {
-        name: 'Outbound Call Survey',
+        name: t('navbar.outboundCallSurvey'),
         to: '/call-survey/create',
       },
       {
-        name: 'Auto Dialer',
+        name: t('navbar.autoDialer'),
         to: '/auto-dialer/create',
       },
       {
-        name: 'Product Survey',
+        name: t('navbar.productSurvey'),
         to: '/product-survey/create',
       },
     ],
   },
   {
-    name: 'Reporting',
+    name: t('navbar.reporting'),
     children: [
       {
-        name: 'Call Reporting',
+        name: t('navbar.callReporting'),
         to: 'reporting/call-reporting',
       },
       {
-        name: 'Call Survey',
+        name: t('navbar.callSurvey'),
         to: 'reporting/call-survey',
       },
     ],
   },
   {
-    name: 'Users & Teams',
+    name: t('navbar.usersAndTeams'),
     children: [],
     to: '/users',
   },
   {
-    name: 'Payment',
+    name: t('navbar.payment'),
     children: [],
     to: '/payment',
   },
 ]);
-const subMenuItems = computed(() => ['queues', 'teams', 'groups']);
+const sidebarItems = computed(() => [
+  {
+    name: t('sidebar.dashboard'),
+    to: '/users',
+  },
+  {
+    name: t('sidebar.orderConfirmation'),
+    to: '/payment',
+  },
+  {
+    name: t('sidebar.campaigns'),
+    to: '/users',
+  },
+  {
+    name: t('sidebar.voiceMessages'),
+    to: '/payment',
+  },
+  {
+    name: t('sidebar.conferenceBridge'),
+    to: '/users',
+  },
+  {
+    name: t('sidebar.phoneBook'),
+    to: '/payment',
+  },
+  {
+    name: t('sidebar.extensions'),
+    to: '/users',
+  },
+  {
+    name: t('sidebar.pbxWare'),
+    to: '/payment',
+  },
+  {
+    name: t('sidebar.reporting'),
+    to: '/users',
+  },
+  {
+    name: t('sidebar.callReporting'),
+    to: '/payment',
+  },
+  {
+    name: t('sidebar.callSurvey'),
+    to: '/users',
+  },
+  {
+    name: t('sidebar.invoices'),
+    to: '/payment',
+  },
+  {
+    name: t('sidebar.autoDialer'),
+    to: '/users',
+  },
+  {
+    name: t('sidebar.developerTab'),
+    to: '/payment',
+  },
+  {
+    name: t('sidebar.contactSupport'),
+    to: '/payment',
+  },
+]);
+
+const subMenuItems = computed(() => [
+  {
+    key: 'queues',
+    value: t('subnav.queues'),
+  },
+  {
+    key: 'teams',
+    value: t('subnav.teams'),
+  },
+  {
+    key: 'groups',
+    value: t('subnav.groups'),
+  },
+]);
 </script>
 
 <style>

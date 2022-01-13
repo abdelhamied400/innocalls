@@ -1,6 +1,6 @@
 <template>
   <div
-    class="details-card bg-white rounded-lg text-center flex flex-col"
+    class="details-card bg-white rounded-lg overflow-hidden text-center flex flex-col"
     :class="props.stats ? 'border border-gray-300' : 'shadow-md'"
   >
     <div class="content grid grid-cols-5 gap-4 flex-grow">
