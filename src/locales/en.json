@@ -120,5 +120,9 @@
     "autoDialer": "Auto Dialer",
     "developerTab": "Developer Tab",
     "contactSupport": "Contact Support"
+  },
+  "home": {
+    "charts": "Charts",
+    "serviceLevelDetails": "Service Level Details"
   }
 }

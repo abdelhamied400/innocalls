@@ -1,30 +1,30 @@
 <template>
   <div class="home flex flex-col gap-8">
     <div class="charts">
-      <h1 class="text-primary font-bold text-3xl my-2">Charts</h1>
+      <h1 class="text-primary font-bold text-3xl my-2">{{$t('home.charts')}}</h1>
       <div class="grid grid-cols-4 gap-4">
         <Card>
-          <BarChart :chartData="testData" />
+          <BarChart :chartData="callDistribution" />
         </Card>
         <Card>
-          <DoughnutChart :chartData="testData" />
+          <DoughnutChart :chartData="totalCalls" />
         </Card>
         <Card>
-          <BarChart :chartData="testData" />
+          <BarChart :chartData="voiceMails" />
         </Card>
         <Card>
-          <DoughnutChart :chartData="testData" />
+          <DoughnutChart :chartData="totalExtensions" />
         </Card>
       </div>
     </div>
     <div class="details">
-      <h1 class="text-primary font-bold text-3xl my-2">Service Level Details</h1>
+      <h1 class="text-primary font-bold text-3xl my-2">{{$t('home.serviceLevelDetails')}}</h1>
       <div class="grid grid-cols-4 gap-4">
         <DetailsCard
           :icon="callTimeIcon"
           title="Average call inbound"
-          value="6 Hrs."
-          sub="Based on 333 calls"
+          :value="averageCallDuration?.average"
+          :sub="`Based on ${averageCallDuration?.calls} calls`"
         />
         <DetailsCard
           :icon="callTimeIcon"
@@ -51,20 +51,23 @@
 
 <script setup>
 import { BarChart, DoughnutChart } from 'vue-chart-3';
+import { useStore } from 'vuex';
+import { computed } from 'vue';
 import Card from '@/components/ui/Card.vue';
 import DetailsCard from '@/components/ui/DetailsCard.vue';
 import callTimeIcon from '@/assets/icons/talk-time-primary.svg';
 import ongoingIcon from '@/assets/icons/ongoing-primary.svg';
 
-const testData = {
-  labels: ['Red', 'Blue', 'Yellow'],
-  datasets: [
-    {
-      label: 'Score Variance',
-      data: [300, 50, -100],
-      backgroundColor: ['rgb(255, 99, 132)', 'rgb(54, 162, 235)', 'rgb(255, 205, 86)'],
-      hoverOffset: 0,
-    },
-  ],
-};
+const store = useStore();
+store.dispatch('fetchCallDistribution');
+store.dispatch('fetchTotalCalls');
+store.dispatch('fetchVoiceMails');
+store.dispatch('fetchExtensions');
+store.dispatch('fetchAverageCallDuration');
+const callDistribution = computed(() => store.getters.callDistribution);
+const totalCalls = computed(() => store.getters.totalCalls);
+const voiceMails = computed(() => store.getters.voiceMails);
+const totalExtensions = computed(() => store.getters.totalExtensions);
+const averageCallDuration = computed(() => store.getters.averageCallDuration);
+
 </script>

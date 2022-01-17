@@ -19,7 +19,6 @@ export default {
   },
   getCallAverageDuration: async (tenantId) => {
     const res = await sip.get(`/api/v2/tenant/statistics/calls-average-duration?tenant_id=${tenantId}`);
-
     return res.data.data.averageDuration;
   },
 };

@@ -32,7 +32,7 @@
     </div>
 
     <div class="flex mx-auto mt-8">
-      <div class="page mx-24 flex-1 text-left">
+      <div class="page mx-24 flex-1 text-justify">
         <Breadcrumbs />
         <router-view />
       </div>

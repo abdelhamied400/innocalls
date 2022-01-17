@@ -91,8 +91,8 @@ export default {
       commit('totalExtensions', data);
     },
     fetchAverageCallDuration: async ({ commit, rootState }) => {
-      const duration = await stats.getCallAverageDuration(rootState.user.tenant.id);
-      commit('averageCallDuration', duration);
+      const averageDuration = await stats.getCallAverageDuration(rootState.user.tenant.id);
+      commit('averageCallDuration', averageDuration);
     },
   },
 };

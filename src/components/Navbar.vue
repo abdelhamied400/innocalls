@@ -126,11 +126,11 @@ const navItems = computed(() => [
 const sidebarItems = computed(() => [
   {
     name: t('sidebar.dashboard'),
-    to: '/users',
+    to: '/',
   },
   {
     name: t('sidebar.orderConfirmation'),
-    to: '/payment',
+    to: '/order-confirmation',
   },
   {
     name: t('sidebar.campaigns'),

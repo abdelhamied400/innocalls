@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const token = localStorage.getItem('token');
 const options = {
-  baseURL: `${process.env.VUE_APP_BASE_URL}/customer/api/v1/customers`,
+  baseURL: `${process.env.VUE_APP_BASE_URL}/customer`,
   headers: {
     'Content-type': 'application/json',
     Accept: 'application/json',

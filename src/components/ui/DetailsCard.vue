@@ -1,6 +1,6 @@
 <template>
   <div
-    class="details-card bg-white rounded-lg overflow-hidden text-center flex flex-col"
+    class="details-card bg-white text-center flex flex-col"
     :class="props.stats ? 'border border-gray-300' : 'shadow-md'"
   >
     <div class="content grid grid-cols-5 gap-4 flex-grow">
@@ -20,8 +20,10 @@
           class="value text-3xl font-bold capitalize"
           :class="props.stats ? `text-state-${props.stats}` : ''"
         >
-          {{ props.value }}
+          <span v-if="typeof props.value === 'object'">{{ duration }}</span>
+          <span v-else>{{ props.value }}</span>
         </h3>
+
         <p class="sub">{{ props.sub }}</p>
       </div>
     </div>
@@ -30,13 +32,16 @@
 </template>
 
 <script setup>
-import { defineProps } from 'vue';
+import { computed, defineProps } from 'vue';
 
 const props = defineProps({
   icon: String,
   title: String,
-  value: String,
+  value: String || Object,
   sub: String,
   stats: String || null,
 });
+
+const duration = computed(() => `${props.value.hours}H ${props.value.minutes}M ${props.value?.seconds}S`);
+
 </script>

@@ -120,5 +120,9 @@
     "autoDialer": "الاتصال الالي",
     "developerTab": "صفحة المطور",
     "contactSupport": "اتصل بالدعم"
+  },
+  "home": {
+    "charts": "رسوم بيانيه",
+    "serviceLevelDetails": "تفاصيل مستوى الخدمة"
   }
 }

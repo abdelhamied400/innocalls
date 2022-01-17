@@ -3,7 +3,7 @@ import { auth, api } from '@/services/axios';
 export default {
   auth: async () => {
     try {
-      const res = await api.get('customer/me', {
+      const res = await api.get('api/v1/customers/customer/me', {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         },
