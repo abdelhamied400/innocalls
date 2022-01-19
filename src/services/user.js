@@ -8,7 +8,7 @@ export default {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         },
       });
-      return res.data;
+      return res.data.data;
     } catch (error) {
       return false;
     }

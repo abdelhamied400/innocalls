@@ -1,4 +1,5 @@
 import axios from 'axios';
+import router from '@/router/index';
 
 const token = localStorage.getItem('token');
 const options = {
@@ -20,9 +21,24 @@ const sipOptions = {
   baseURL: `${process.env.VUE_APP_BASE_URL}/customer/sip/provisioningwa`,
 };
 
-const api = axios.create(options);
-const sip = axios.create(sipOptions);
-const auth = axios.create(authOptions);
+const createInstance = (opts) => {
+  const instance = axios.create(opts);
+
+  instance.interceptors.response.use(
+    (response) => response,
+    (error) => {
+      if (error.response.status === 403) {
+        router.push('/login');
+      }
+    },
+  );
+
+  return instance;
+};
+
+const api = createInstance(options);
+const sip = createInstance(sipOptions);
+const auth = createInstance(authOptions);
 
 export {
   axios, api, auth, sip,

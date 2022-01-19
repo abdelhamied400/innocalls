@@ -15,3 +15,12 @@ p {
 .ant-menu a {
   color: inherit !important;
 }
+
+.ant-table {
+  overflow: auto;
+  width: 100%;
+}
+.ant-table tr th,
+.ant-table tr td {
+  text-align: center;
+}

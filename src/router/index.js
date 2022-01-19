@@ -1,12 +1,11 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import MainLayout from '../layout/MainLayout.vue';
 import EmptyLayout from '../layout/EmptyLayout.vue';
-import user from '../services/user';
-import store from '@/store/index';
 
 const routes = [
   {
-    path: '',
+    path: '/',
+    name: 'main',
     component: MainLayout,
     meta: {
       requiresAuth: true,
@@ -134,24 +133,6 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
-});
-
-router.beforeEach(async (to, from, next) => {
-  store.commit('authLoading', true);
-  const auth = await user.auth();
-  store.commit('user', auth.data);
-  store.commit('tenant', auth.data?.tenantList?.[0]);
-
-  const isAuth = to.meta?.requiresAuth && auth.success;
-  if (to.meta?.requiresAuth && !isAuth) {
-    next('/login');
-  } else {
-    next();
-  }
-});
-
-router.afterEach(() => {
-  store.commit('authLoading', false);
 });
 
 export default router;

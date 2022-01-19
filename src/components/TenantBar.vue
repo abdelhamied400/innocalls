@@ -3,7 +3,7 @@
     <a-dropdown class="top-8" placement="bottomCenter" :trigger="['click']">
       <div class="cursor-pointer flex items-center gap-2">
         <img class="rounded-full" src="https://i.pravatar.cc/50" alt="">
-        <span>{{ user?.tenantList?.[0]?.name || user.name }}</span>
+        <span>{{ user?.tenantList?.[0]?.name || user?.name }}</span>
       </div>
       <template #overlay>
         <a-menu class="tenantMenu text-center capitalize" @click="onTenantChange">
@@ -14,7 +14,7 @@
               v-for="(tenant, idx) in user.tenantList"
               :key="tenant.id"
             >
-              <a-menu-item class="px-4" :key="idx">{{ tenant.name }}</a-menu-item>
+              <a-menu-item class="px-4" :key="idx">{{ tenant?.name }}</a-menu-item>
             </div>
           </div>
           <a-menu-item v-else class="px-4" disabled>

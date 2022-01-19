@@ -23,6 +23,8 @@ export default defineComponent({
 
     locale.value = lang.value;
 
+    store.dispatch('auth');
+
     return { dir, lang, authLoading };
   },
 });
