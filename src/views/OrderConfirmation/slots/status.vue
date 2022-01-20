@@ -1,5 +1,6 @@
 <template>
-  <a-popover v-if="props.record.reasons?.length > 0">
+  <div class="order-confirmation-status">
+    <a-popover v-if="props.record.reasons?.length > 0">
     <template #content>
       <p v-for="reason in props.record.reasons" :key="reason">{{ reason }}</p>
     </template>
@@ -16,6 +17,7 @@
     </template>
     {{ props.value }}
   </a-tag>
+  </div>
 </template>
 
 <script setup>

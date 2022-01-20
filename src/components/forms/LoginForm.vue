@@ -29,7 +29,6 @@ import {
 } from 'vue';
 import { useStore } from 'vuex';
 import { notification } from 'ant-design-vue';
-import { useRouter } from 'vue-router';
 import { useI18n } from 'vue-i18n';
 import errorHandler from '@/utils/errorHandler';
 
@@ -37,7 +36,6 @@ export default defineComponent({
   setup() {
     const i18n = useI18n();
     const store = useStore();
-    const router = useRouter();
     const loginForm = ref();
     const formState = reactive({
       username: '',
@@ -69,7 +67,7 @@ export default defineComponent({
         state.loading = true;
         await store.dispatch('login', credentials);
         state.loading = false;
-        router.push({ name: 'dashboard' });
+        window.location.href = '/';
       } catch (error) {
         errorHandler.handle({
           i18n,

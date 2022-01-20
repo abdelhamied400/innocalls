@@ -48,6 +48,9 @@ export default {
       const data = await user.login(credentials);
       commit('auth', data);
       localStorage.setItem('token', data?.access_token);
+      const auth = await user.auth(data?.access_token);
+      commit('user', auth);
+      commit('tenant', auth?.tenantList?.[0]);
     },
     signup: async (_, data) => {
       await user.signup(data);

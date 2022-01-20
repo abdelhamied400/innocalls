@@ -5,15 +5,22 @@ module.exports = {
     extend: {
       colors: {
         primary: {
-          DEFAULT: '#2F8FCF',
-          dark: '#0D4D80',
+          DEFAULT: '#2BA4DC',
+          700: '#008ECF',
+          900: '#0D4D80',
         },
         state: {
-          info: '#2F8FCF',
-          success: '#52c41a',
-          warning: '#faad14',
-          error: '#f5222d',
+          info: '#2BA4DC',
+          success: '#5DB22C',
+          warning: '#F6C700',
+          error: '#FC476A',
         },
+      },
+      maxWidth: {
+        '8xl': '90rem',
+      },
+      height: {
+        18: '70px',
       },
     },
   },

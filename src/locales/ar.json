@@ -104,25 +104,9 @@
     "busyExtensions": "النطاقات المشغوله",
     "waitingCalls": "المكالمات في الانتظار"
   },
-  "sidebar": {
-    "dashboard": "لوحة التحكم",
-    "orderConfirmation": "الطلبات",
-    "campaigns": "الحملات",
-    "voiceMessages": "الرسائل الصوتيه",
-    "conferenceBridge": "Conference Bridge",
-    "phoneBook": "سجل الهاتف",
-    "extensions": "الملحقات",
-    "pbxWare": "PBXWare",
-    "reporting": "التقارير",
-    "callReporting": "تقارير المكالمات",
-    "callSurvey": "Call Survey",
-    "invoices": "الفواتير",
-    "autoDialer": "الاتصال الالي",
-    "developerTab": "صفحة المطور",
-    "contactSupport": "اتصل بالدعم"
-  },
   "home": {
     "charts": "رسوم بيانيه",
-    "serviceLevelDetails": "تفاصيل مستوى الخدمة"
+    "serviceLevelDetails": "تفاصيل مستوى الخدمة",
+    "billingDetails": "الماليات"
   }
 }

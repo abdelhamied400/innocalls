@@ -1,24 +1,41 @@
 <template>
-  <div class="home flex flex-col gap-8">
-    <div class="charts">
-      <h1 class="text-primary font-bold text-3xl my-2">{{$t('home.charts')}}</h1>
+  <div class="home flex flex-col gap-8 max-w-8xl mx-auto">
+    <section class="charts">
+      <h1 class="text-primary-900 font-medium text-xl text-justify mb-4">
+        {{ $t('home.charts') }}
+      </h1>
       <div class="grid grid-cols-4 gap-4">
-        <Card>
-          <BarChart :chartData="callDistribution" />
-        </Card>
-        <Card>
-          <DoughnutChart :chartData="totalCalls" />
-        </Card>
-        <Card>
-          <BarChart :chartData="voiceMails" />
-        </Card>
-        <Card>
-          <DoughnutChart :chartData="totalExtensions" />
-        </Card>
+        <div>
+          <h1 class="text-gray-900 text-xl text-justify">Score Variance</h1>
+          <Card>
+            <BarChart :chartData="callDistribution" />
+          </Card>
+        </div>
+        <div>
+          <h1 class="text-gray-900 text-xl text-justify">Total Score</h1>
+          <Card>
+            <DoughnutChart :chartData="totalCalls" />
+          </Card>
+        </div>
+        <div>
+          <h1 class="text-gray-900 text-xl text-justify">Score Variance</h1>
+          <Card>
+            <BarChart :chartData="voiceMails" />
+          </Card>
+        </div>
+        <div>
+          <h1 class="text-gray-900 text-xl text-justify">Total Number of Surveys</h1>
+          <Card>
+            <DoughnutChart :chartData="totalExtensions" />
+          </Card>
+        </div>
+        <div></div>
       </div>
-    </div>
-    <div class="details">
-      <h1 class="text-primary font-bold text-3xl my-2">{{$t('home.serviceLevelDetails')}}</h1>
+    </section>
+    <section class="details">
+      <h1 class="text-primary-900 font-medium text-xl text-justify mb-4">
+        {{ $t('home.serviceLevelDetails') }}
+      </h1>
       <div class="grid grid-cols-4 gap-4">
         <DetailsCard
           :icon="callTimeIcon"
@@ -45,7 +62,8 @@
           sub="Based on 400 calls"
         />
       </div>
-    </div>
+    </section>
+
   </div>
 </template>
 
@@ -69,5 +87,4 @@ const totalCalls = computed(() => store.getters.totalCalls);
 const voiceMails = computed(() => store.getters.voiceMails);
 const totalExtensions = computed(() => store.getters.totalExtensions);
 const averageCallDuration = computed(() => store.getters.averageCallDuration);
-
 </script>

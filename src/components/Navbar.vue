@@ -1,62 +1,47 @@
 <template>
-  <nav class="bg-white">
-    <div class="h-2 bg-primary-dark"></div>
-    <div class="flex mx-24">
-      <div class="py-3 logo">
-        <img class="w-36" src="@/assets/logo.svg" alt="innocalls" />
-      </div>
-      <div class="mx-8 flex-grow flex justify-between">
-        <div class="menu xl:flex hidden">
-          <NavbarItem v-for="item in navItems" v-bind="item" :key="item.name" />
+  <nav>
+    <div class="h-2 bg-primary-700"></div>
+    <div class="bg-white px-8 h-18">
+      <div class="flex justify-between h-full mx-auto max-w-8xl">
+        <div class="flex gap-12">
+          <router-link to="/" class="flex">
+            <img class="w-36 m-auto" src="@/assets/logo.svg" alt="innocalls"/>
+          </router-link>
+          <div class="menu flex">
+            <NavbarItem v-for="item in navItems" v-bind="item" :key="item.name" />
+          </div>
         </div>
-        <div class="actions md:flex gap-2 hidden items-center">
-          <LangBar />
-          <img class="w-7 mx-2" src="@/assets/icons/shop.svg" alt />
-          <img class="w-7 mx-2" src="@/assets/icons/notification.svg" alt />
-          <img class="w-7 mx-2" src="@/assets/icons/info.svg" alt />
-          <img class="w-7 mx-2" src="@/assets/icons/logout.svg" alt />
+        <div class="mx-8 flex gap-4">
+          <div class="actions flex gap-2 items-center">
+            <LangBar />
+            <Notifications />
+            <img class="w-7 mx-2" src="@/assets/icons/info.svg" alt />
+            <img class="w-7 mx-2" src="@/assets/icons/logout.svg" alt />
+          </div>
+          <TenantBar />
         </div>
       </div>
-      <TenantBar />
     </div>
 
-    <div class="subNav bg-gray-700 text-white text-lg">
-      <div class="flex items-center justify-between mx-24 h-full">
-
-        <div class="sideMenu">
-          <a-dropdown>
-      <a
-        class="px-4 text-base capitalize flex space-x-2 items-center"
-        @click.prevent
-      >
-        {{$t("sidebar.dashboard")}}
-        <CaretDownOutlined />
-      </a>
-      <template #overlay>
-        <a-menu>
-          <router-link v-for="(item, idx) in sidebarItems" :key="idx" :to="item.to">
-            <a-menu-item>
-              {{ item.name }}
-            </a-menu-item>
-          </router-link>
-        </a-menu>
-      </template>
-    </a-dropdown>
-        </div>
-
+    <div class="bg-gray-700 px-8 h-18">
+      <div class="flex justify-between h-full mx-auto max-w-8xl">
+        <p
+          class="text-xl text-primary font-semibold uppercase flex space-x-2 items-center"
+        >
+          dashboard
+        </p>
         <div class="tabs flex">
           <a-menu
-            class="capitalize bg-transparent text-white border-0 my-auto"
+            class="capitalize bg-transparent text-white border-0"
             v-model:selectedKeys="current"
             mode="horizontal"
           >
             <a-menu-item class="mx-4" v-for="item in subMenuItems" :key="item.key">
-              <span class="block my-4 text-lg">{{ item.value }}</span>
+              <span class="block my-4 text-2xl font-medium">{{ item.value }}</span>
             </a-menu-item>
           </a-menu>
         </div>
-        <div class="actions">
-        </div>
+        <div class="actions"></div>
       </div>
     </div>
   </nav>
@@ -64,38 +49,39 @@
 
 <script setup>
 import { computed, ref } from 'vue';
-import { CaretDownOutlined } from '@ant-design/icons-vue';
 import { useI18n } from 'vue-i18n';
 import NavbarItem from './NavbarItem.vue';
 import LangBar from './LangBar.vue';
 import TenantBar from './TenantBar.vue';
+import Notifications from './Notifications.vue';
 
 const { t } = useI18n();
 
 const current = ref(['queues']);
 const navItems = computed(() => [
   {
-    name: t('navbar.create'),
+    name: 'services',
+    active: true,
     children: [
       {
         name: t('navbar.callCampaign'),
-        to: '/call-campaign/create',
+        to: '/call-campaign',
       },
       {
         name: t('navbar.orderConfirmation'),
-        to: '/order-confirmation/create',
+        to: '/order-confirmation',
       },
       {
         name: t('navbar.outboundCallSurvey'),
-        to: '/call-survey/create',
+        to: '/call-survey',
       },
       {
         name: t('navbar.autoDialer'),
-        to: '/auto-dialer/create',
+        to: '/auto-dialer',
       },
       {
         name: t('navbar.productSurvey'),
-        to: '/product-survey/create',
+        to: '/product-survey',
       },
     ],
   },
@@ -123,68 +109,6 @@ const navItems = computed(() => [
     to: '/payment',
   },
 ]);
-const sidebarItems = computed(() => [
-  {
-    name: t('sidebar.dashboard'),
-    to: '/',
-  },
-  {
-    name: t('sidebar.orderConfirmation'),
-    to: '/order-confirmation',
-  },
-  {
-    name: t('sidebar.campaigns'),
-    to: '/users',
-  },
-  {
-    name: t('sidebar.voiceMessages'),
-    to: '/payment',
-  },
-  {
-    name: t('sidebar.conferenceBridge'),
-    to: '/users',
-  },
-  {
-    name: t('sidebar.phoneBook'),
-    to: '/payment',
-  },
-  {
-    name: t('sidebar.extensions'),
-    to: '/users',
-  },
-  {
-    name: t('sidebar.pbxWare'),
-    to: '/payment',
-  },
-  {
-    name: t('sidebar.reporting'),
-    to: '/users',
-  },
-  {
-    name: t('sidebar.callReporting'),
-    to: '/payment',
-  },
-  {
-    name: t('sidebar.callSurvey'),
-    to: '/users',
-  },
-  {
-    name: t('sidebar.invoices'),
-    to: '/payment',
-  },
-  {
-    name: t('sidebar.autoDialer'),
-    to: '/users',
-  },
-  {
-    name: t('sidebar.developerTab'),
-    to: '/payment',
-  },
-  {
-    name: t('sidebar.contactSupport'),
-    to: '/payment',
-  },
-]);
 
 const subMenuItems = computed(() => [
   {
@@ -203,7 +127,10 @@ const subMenuItems = computed(() => [
 </script>
 
 <style>
-.ant-menu-item-selected::after{
-  border-bottom: 5px solid #2F8FCF !important;
+.ant-menu-item-selected {
+  color: white !important;
+}
+.ant-menu-item-selected::after {
+  border-bottom: 5px solid #2f8fcf !important;
 }
 </style>

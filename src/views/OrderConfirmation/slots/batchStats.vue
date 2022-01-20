@@ -1,14 +1,16 @@
 <template>
-  <div v-if="!downloadLoading">
-    <img
-      v-if="props.record.status === 'finished'"
-      class="w-24 cursor-pointer"
-      src="@/assets/download.png"
-      alt=""
-      @click="() => download(props.record.id, props.record.filename)"
-    />
+  <div class="order-confirmation-batch-stats">
+    <div v-if="!downloadLoading">
+      <img
+        v-if="props.record.status === 'finished'"
+        class="w-24 cursor-pointer"
+        src="@/assets/download.png"
+        alt=""
+        @click="() => download(props.record.id, props.record.filename)"
+      />
+    </div>
+    <a-spin v-else />
   </div>
-  <a-spin v-else />
 </template>
 
 <script setup>
