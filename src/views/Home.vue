@@ -5,27 +5,27 @@
         {{ $t('home.charts') }}
       </h1>
       <div class="grid grid-cols-4 gap-4">
-        <div>
+        <div class="flex flex-col">
           <h1 class="text-gray-900 text-xl text-justify">Score Variance</h1>
-          <Card>
+          <Card :loading="!callDistribution" class="flex-1">
             <BarChart :chartData="callDistribution" />
           </Card>
         </div>
-        <div>
+        <div class="flex flex-col">
           <h1 class="text-gray-900 text-xl text-justify">Total Score</h1>
-          <Card>
+          <Card :loading="!totalCalls" class="flex-1">
             <DoughnutChart :chartData="totalCalls" />
           </Card>
         </div>
-        <div>
+        <div class="flex flex-col">
           <h1 class="text-gray-900 text-xl text-justify">Score Variance</h1>
-          <Card>
+          <Card :loading="!voiceMails" class="flex-1">
             <BarChart :chartData="voiceMails" />
           </Card>
         </div>
-        <div>
+        <div class="flex flex-col">
           <h1 class="text-gray-900 text-xl text-justify">Total Number of Surveys</h1>
-          <Card>
+          <Card :loading="!totalExtensions" class="flex-1">
             <DoughnutChart :chartData="totalExtensions" />
           </Card>
         </div>
@@ -63,25 +63,31 @@
         />
       </div>
     </section>
-
   </div>
 </template>
 
 <script setup>
 import { BarChart, DoughnutChart } from 'vue-chart-3';
 import { useStore } from 'vuex';
-import { computed } from 'vue';
+import { computed, watchEffect } from 'vue';
 import Card from '@/components/ui/Card.vue';
 import DetailsCard from '@/components/ui/DetailsCard.vue';
 import callTimeIcon from '@/assets/icons/talk-time-primary.svg';
 import ongoingIcon from '@/assets/icons/ongoing-primary.svg';
 
 const store = useStore();
-store.dispatch('fetchCallDistribution');
-store.dispatch('fetchTotalCalls');
-store.dispatch('fetchVoiceMails');
-store.dispatch('fetchExtensions');
-store.dispatch('fetchAverageCallDuration');
+const currentTenant = computed(() => store.getters.tenant);
+
+watchEffect(() => {
+  if (currentTenant.value) {
+    store.dispatch('fetchCallDistribution');
+    store.dispatch('fetchTotalCalls');
+    store.dispatch('fetchVoiceMails');
+    store.dispatch('fetchExtensions');
+    store.dispatch('fetchAverageCallDuration');
+  }
+});
+
 const callDistribution = computed(() => store.getters.callDistribution);
 const totalCalls = computed(() => store.getters.totalCalls);
 const voiceMails = computed(() => store.getters.voiceMails);

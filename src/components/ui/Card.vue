@@ -11,9 +11,20 @@
       text-center
     "
   >
-    <slot />
+    <slot v-if="!props.loading" />
+    <div class="m-auto"  v-else>
+      <a-spin />
+    </div>
   </div>
 </template>
+
+<script setup>
+import { defineProps } from 'vue';
+
+const props = defineProps({
+  loading: Boolean,
+});
+</script>
 
 <style scoped>
 .card{

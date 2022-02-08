@@ -1,4 +1,6 @@
-import { deleteOrderConfirmation, getOrderConfirmationList } from '@/services/orderConfirmation';
+import {
+  deleteOrderConfirmation, getCallerIds, getCallFlows, getOrderConfirmationList, getTypes,
+} from '@/services/orderConfirmation';
 
 export default {
   state: {
@@ -6,12 +8,18 @@ export default {
     currentPage: 1,
     perPage: 10,
     filter: '',
+    callFlows: null,
+    types: null,
+    callerIds: null,
   },
   getters: {
     orderConfirmationList: (state) => state.orderConfirmationList,
     currentPage: (state) => state.currentPage,
     perPage: (state) => state.perPage,
     filter: (state) => state.filter,
+    callFlows: (state) => state.callFlows,
+    types: (state) => state.types,
+    callerIds: (state) => state.callerIds,
   },
   mutations: {
     orderConfirmationList: (state, list) => {
@@ -35,6 +43,15 @@ export default {
     filter: (state, filter) => {
       state.filter = filter;
     },
+    callFlows: (state, callFlows) => {
+      state.callFlows = callFlows;
+    },
+    types: (state, types) => {
+      state.types = types;
+    },
+    callerIds: (state, callerIds) => {
+      state.callerIds = callerIds;
+    },
   },
   actions: {
     fetchOrderConfirmationList: async ({ commit, state }) => {
@@ -57,6 +74,18 @@ export default {
     },
     setFilter: async ({ commit }, filter) => {
       commit('filter', filter);
+    },
+    fetchCallFlows: async ({ commit }) => {
+      const callFlows = await getCallFlows();
+      commit('callFlows', callFlows);
+    },
+    fetchTypes: async ({ commit }) => {
+      const types = await getTypes();
+      commit('types', types);
+    },
+    fetchCallerIds: async ({ commit }) => {
+      const callerIds = await getCallerIds();
+      commit('callerIds', callerIds);
     },
   },
 };

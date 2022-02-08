@@ -37,7 +37,7 @@ export default {
     fetchCallDistribution: async ({ commit, rootState }) => {
       const data = {};
       const colors = ['#2F8FCFd9', '#0D4D80d9'];
-      const callDistribution = await stats.getCallDistribution(rootState.user.tenant.id);
+      const callDistribution = await stats.getCallDistribution(rootState.user.tenant?.id);
       const callDistributionDatasets = Object.keys(callDistribution).map((key, idx) => ({
         label: key,
         data: callDistribution[key].values,
@@ -52,7 +52,7 @@ export default {
       commit('callDistribution', data);
     },
     fetchTotalCalls: async ({ commit, rootState }) => {
-      const totalCalls = await stats.getTotalCalls(rootState.user.tenant.id);
+      const totalCalls = await stats.getTotalCalls(rootState.user.tenant?.id);
       const data = {
         labels: totalCalls.labels,
         datasets: [
@@ -65,7 +65,7 @@ export default {
       commit('totalCalls', data);
     },
     fetchVoiceMails: async ({ commit, rootState }) => {
-      const voiceMails = await stats.getVoiceMails(rootState.user.tenant.id);
+      const voiceMails = await stats.getVoiceMails(rootState.user.tenant?.id);
       const data = {
         labels: voiceMails.labels,
         datasets: [
@@ -77,8 +77,9 @@ export default {
       };
       commit('voiceMails', data);
     },
-    fetchExtensions: async ({ commit, rootState }) => {
-      const extensions = await stats.getExtensions(rootState.user.tenant.id);
+    fetchExtensions: async ({ commit, rootState, ...rest }) => {
+      console.log('>>', rest.getters.tenant);
+      const extensions = await stats.getExtensions(rootState.user.tenant?.id);
       const data = {
         labels: ['extensions'],
         datasets: [
@@ -91,7 +92,7 @@ export default {
       commit('totalExtensions', data);
     },
     fetchAverageCallDuration: async ({ commit, rootState }) => {
-      const averageDuration = await stats.getCallAverageDuration(rootState.user.tenant.id);
+      const averageDuration = await stats.getCallAverageDuration(rootState.user.tenant?.id);
       commit('averageCallDuration', averageDuration);
     },
   },

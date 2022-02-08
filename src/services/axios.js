@@ -28,8 +28,8 @@ const createInstance = (opts) => {
     (response) => response,
     (error) => {
       if (
-        error.response.status === 403
-        || error.response.data.message === 'Auth guard [verified] is not defined.'
+        error.response?.status === 403
+        || error.response?.data.message === 'Auth guard [verified] is not defined.'
       ) {
         router.push('/login');
       }
