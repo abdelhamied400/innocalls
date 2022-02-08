@@ -5,10 +5,14 @@
       <div class="flex justify-between h-full mx-auto max-w-8xl">
         <div class="flex gap-12">
           <router-link to="/" class="flex">
-            <img class="w-36 m-auto" src="@/assets/logo.svg" alt="innocalls"/>
+            <img class="w-36 m-auto" src="@/assets/logo.svg" alt="innocalls" />
           </router-link>
           <div class="menu flex">
-            <NavbarItem v-for="item in navItems" v-bind="item" :key="item.name" />
+            <NavbarItem
+              v-for="item in navItems"
+              v-bind="item"
+              :key="item.name"
+            />
           </div>
         </div>
         <div class="mx-8 flex gap-4">
@@ -36,8 +40,14 @@
             v-model:selectedKeys="current"
             mode="horizontal"
           >
-            <a-menu-item class="mx-4" v-for="item in subMenuItems" :key="item.key">
-              <span class="block my-4 text-2xl font-medium">{{ item.value }}</span>
+            <a-menu-item
+              class="mx-4"
+              v-for="item in subMenuItems"
+              :key="item.key"
+            >
+              <span class="block my-4 text-2xl font-medium">{{
+                item.value
+              }}</span>
             </a-menu-item>
           </a-menu>
         </div>
@@ -65,7 +75,7 @@ const navItems = computed(() => [
     children: [
       {
         name: t('navbar.callCampaign'),
-        to: '/call-campaign',
+        to: '/call-campaigns',
       },
       {
         name: t('navbar.orderConfirmation'),

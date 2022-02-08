@@ -34,9 +34,21 @@ const routes = [
         ],
       },
       {
-        path: 'campaigns',
+        path: 'call-campaigns',
         name: 'campaigns',
-        component: () => import('../views/Home.vue'),
+        component: EmptyLayout,
+        children: [
+          {
+            path: '',
+            name: 'list-call-campaigns',
+            component: () => import('../views/CallCampaigns/index.vue'),
+          },
+          {
+            path: 'create',
+            name: 'create-call-campaigns',
+            component: () => import('../views/CallCampaigns/Create.vue'),
+          },
+        ],
       },
       {
         path: 'voice-messages',
